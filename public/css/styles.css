@@ -11,9 +11,19 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-blue);
 }
 
 /* ---------------------------------- UTILS ---------------------------------- */
+a {
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+}
+
+a:hover {
+    color: var(--light-blue);
+}
+
 .bg-dark-blue {
     background-color: var(--dark-blue);
 }
@@ -57,22 +67,69 @@ body {
 
 /* ---------------------------------- NAVBAR ---------------------------------- */
 nav {
-    padding: 20px;
-    min-height: 60px;
+    padding: 1.5rem;
+    min-height: 65px;
+}
+nav a,
+nav ul li a {
+    color: white;
 }
 
 .list-group {
     column-gap: 1.5rem;
-    row-gap: 0.5rem;
 }
 
 .list-group li {
     list-style-type: none;
-    text-transform: uppercase;
 }
 
 .navbar-brand {
     color: white;
+}
+
+.offcanvas {
+    top: 65px !important;
+}
+
+.offcanvas-btn i {
+    transition: all 0.25s ease-in-out;
+}
+
+.offcanvas-btn i:hover {
+    color: var(--light-blue);
+    cursor: pointer;
+}
+
+.user-img {
+    width: 80px;
+    height: 80px;
+    font-size: 3.5rem;
+    color: var(--bg-blue);
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+#offcanvas-menu li {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--bg-blue);
+}
+
+#offcanvas-menu li.active {
+    background-color: var(--light-blue);
+}
+
+#offcanvas-menu li.active a:hover {
+    color: var(--dark-blue);
 }
 
 /* ---------------------------------- LOGIN ---------------------------------- */
