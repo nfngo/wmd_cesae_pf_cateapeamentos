@@ -18,7 +18,7 @@ class CreateApeasTable extends Migration
             $table->string('ref_externa_id');
             $table->char('estado_nemesis_apea_id', 2);
             $table->date('data_estado_global_apea')->nullable();
-            $table->date('data_envio_proj_sp-apea')->nullable();
+            $table->date('data_envio_proj_sp_apea')->nullable();
             $table->date('data_real_p_apea')->nullable();
             $table->date('data_plan_p_apea')->nullable();
             $table->date('data_real_c_apea')->nullable();
