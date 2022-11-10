@@ -16,7 +16,7 @@ class CreateMaterialsTable extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('descricao');
-            $table->integer('bainha');
+            $table->string('bainha');
             $table->string('diametro');
             $table->integer('pares');
             $table->double('cobre');

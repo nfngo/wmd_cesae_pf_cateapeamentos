@@ -27,7 +27,7 @@ class CreateApeasTable extends Migration
             $table->date('data_plan_cadastro_apea')->nullable();
             $table->string('tipo_cabos')->nullable();
             $table->string('peso_cabos')->nullable();
-            $table->boolean('faturado');
+            $table->boolean('faturado')->default(false);
 
             $table->foreign('ref_externa_id')->references('id')->on('ref_externas');
             $table->foreign('estado_nemesis_apea_id')->references('id')->on('estados');
