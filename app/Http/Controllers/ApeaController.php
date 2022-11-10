@@ -56,30 +56,29 @@ class ApeaController extends Controller
      * @param \App\Apea $apea
      * @return \Illuminate\Http\Response
      */
-    public function edit(Apea $apea){
+    public function edit(Apea $apea)
+    {
 
         $estados = Estado::all();
 
-
-      return view('pages.apeamentos.edit', ['apea' => $apea,'estados' => $estados]);
+        return view('pages.apeamentos.edit', ['apea' => $apea, 'estados' => $estados]);
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Apea  $apea
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Apea $apea
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Apea $apea)
     {
         $apea = Apea::find($apea->id);
 
-
         $apea->estado_nemesis_apea_id = $request->estado_nemesis_apea_id;
         $apea->data_estado_global_apea = $request->data_estado_global_apea;
-        $apea->data_envio_proj_sp_apea = $request-> data_envio_proj_sp_apea;
+        $apea->data_envio_proj_sp_apea = $request->data_envio_proj_sp_apea;
         $apea->data_real_p_apea = $request->data_real_p_apea;
         $apea->data_plan_p_apea = $request->data_plan_p_apea;
         $apea->data_real_c_apea = $request->data_real_c_apea;
@@ -92,16 +91,16 @@ class ApeaController extends Controller
 
         $apea->save();
 
-        return redirect('estados')->with('status','Editado');
+        $message = 'Apeamento ' . $apea->id . 'editado com sucesso.';
 
-
+        return redirect('estados')->with('status', $message);
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Apea  $apea
+     * @param \App\Apea $apea
      * @return \Illuminate\Http\Response
      */
     public function destroy(Apea $apea)

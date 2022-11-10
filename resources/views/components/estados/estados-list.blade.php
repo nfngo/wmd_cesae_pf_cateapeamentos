@@ -2,6 +2,14 @@
     <div class="row">
         <div class="col-12">
             <p class="my-4 text-uppercase fs-5">Controlo de Estados</p>
+            @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <form class="form-group my-4" method="GET" action="{{url('estados/search')}}">
                 <div class="row">
                     <div class="col-12 col-md-4">
@@ -72,15 +80,15 @@
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="form-group">
-                            <label class="mb-1" for="faturado">Faturação</label>
+                            <label class="mb-1" for="faturado">Faturado</label>
                             <select
                                 class="form-select @error('faturado') is-invalid @enderror"
                                 name="faturado"
                                 id="faturado"
                             >
-                                <option selected value="">Escolha um estado de faturação</option>
-                                <option value="0">Não</option>
+                                <option selected value="">Escolha uma opção </option>
                                 <option value="1">Sim</option>
+                                <option value="0">Não</option>
                             </select>
                             @error('faturado')
                             <span class="invalid-feedback" role="alert">
@@ -107,15 +115,15 @@
                                 <th colspan="2">Controlo de Estado</th>
                                 <th colspan="3">PdS Global Baldeação</th>
                                 <th colspan="1">Data N Baldeação</th>
-                                <th colspan="3">Data U: Projecto Baldeação </th>
-                                <th colspan="3">Data D: Projecto Baldeação </th>
-                                <th colspan="3">Data Y: Projecto Baldeação </th>
+                                <th colspan="3">Data U: Projeto Baldeação</th>
+                                <th colspan="3">Data D: Projeto Baldeação</th>
+                                <th colspan="3">Data Y: Projeto Baldeação</th>
                                 <th colspan="2">Controlo de Estado</th>
                                 <th colspan="3">PdS Global Apeamento</th>
                                 <th colspan="1">Data N Apeamento</th>
-                                <th colspan="3">Data U: Projecto Apeamento </th>
-                                <th colspan="3">Data D: Projecto Apeamento </th>
-                                <th colspan="3">Data Y: Projecto Apeamento </th>
+                                <th colspan="3">Data U: Projeto Apeamento</th>
+                                <th colspan="3">Data D: Projeto Apeamento</th>
+                                <th colspan="3">Data Y: Projeto Apeamento</th>
                                 <th colspan="2">Caracterização Baldeação</th>
                                 <th colspan="1"></th>
                             </tr>
@@ -179,9 +187,11 @@
                                         {{ $project->bald_id }}
                                     </td>
                                     <td class="text-center">
-                                        <a href={{url('bald/' . $project->bald_id)}}>
-                                            <i class="fa-solid fa-eye fs-5"></i>
-                                        </a>
+                                        @if($project->bald_id)
+                                            <a href={{url('bald/' . $project->bald_id . '/edit')}}>
+                                                <i class="fa-solid fa-eye fs-5"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>{{ $project->estado_nemesis_bald_id }}</td>
                                     <td>{{ $project->data_estado_global_bald}}</td>
@@ -266,9 +276,11 @@
 
                                     <td>{{ $project->apea_id }}</td>
                                     <td class="text-center">
-                                        <a href={{url('apea/' . $project->apea_id)}}>
-                                            <i class="fa-solid fa-eye fs-5"></i>
-                                        </a>
+                                        @if($project->apea_id)
+                                            <a href={{url('apea/' . $project->apea_id . '/edit')}}>
+                                                <i class="fa-solid fa-eye fs-5"></i>
+                                            </a>
+                                        @endif
                                     </td>
                                     <td>{{ $project->estado_nemesis_apea_id }}</td>
                                     <td>{{ $project->data_estado_global_apea}}</td>
