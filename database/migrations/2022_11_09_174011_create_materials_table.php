@@ -26,6 +26,7 @@ class CreateMaterialsTable extends Migration
             $table->double('gel');
             $table->double('peso_kg_m');
             $table->string('comentarios');
+            $table->timestamps();
 
         });
     }

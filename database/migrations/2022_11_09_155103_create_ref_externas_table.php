@@ -17,6 +17,7 @@ class CreateRefExternasTable extends Migration
             $table->string('id')->primary();
             $table->string('acl_id');
             $table->foreign('acl_id')->references('id')->on('acls');
+            $table->timestamps();
         });
     }
 

@@ -29,6 +29,8 @@ class CreateControloApeasTable extends Migration
             $table->string('tipo_consumo_proj')->nullable();
             $table->double('comprimento_real');
             $table->string('tipo_consumo_real');
+            $table->timestamps();
+
 
         });
     }
