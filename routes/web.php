@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('estados', 'EstadosController@index');
 Route::get('estados/search', 'EstadosController@search');
+
+Route::get('lme', 'LmeController@index');
