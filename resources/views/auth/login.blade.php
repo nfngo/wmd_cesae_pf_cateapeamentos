@@ -8,16 +8,18 @@
                 @csrf
                 <div class="form-floating">
                     <input id="email" type="email" class="form-control login-input @error('email') is-invalid @enderror"
-                           name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
+                           name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+                           placeholder="email">
                     <label for="email">Email</label>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
-                </span>
+                    </span>
                     @enderror
                 </div>
                 <div class="form-floating">
-                    <input id="password" type="password" class="form-control login-input @error('password') is-invalid @enderror"
+                    <input id="password" type="password"
+                           class="form-control login-input @error('password') is-invalid @enderror"
                            name="password" required autocomplete="current-password" placeholder="password">
                     <label for="password">Password</label>
                     @error('password')
@@ -26,7 +28,7 @@
                 </span>
                     @enderror
                 </div>
-                <button type="submit" class="btn-dark-blue fs-6">
+                <button type="submit" class="btn btn-dark-blue fs-6">
                     Iniciar Sessão
                 </button>
             </form>
