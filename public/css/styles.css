@@ -68,7 +68,7 @@ a:hover {
 /* ---------------------------------- NAVBAR ---------------------------------- */
 nav {
     padding: 1.5rem;
-    min-height: 65px;
+    min-height: 78px;
 }
 nav a,
 nav ul li a {
@@ -87,8 +87,10 @@ nav ul li a {
     color: white;
 }
 
+/* ---------------------------------- OFFCANVAS ---------------------------------- */
+
 .offcanvas {
-    top: 65px !important;
+    top: 78px !important;
 }
 
 .offcanvas-btn i {
@@ -119,13 +121,14 @@ nav ul li a {
 
 #offcanvas-menu li {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--bg-blue);
 }
 
 #offcanvas-menu li.active {
     background-color: var(--light-blue);
+    font-weight: 700;
 }
 
 #offcanvas-menu li.active a:hover {

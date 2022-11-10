@@ -46,6 +46,9 @@
                 <li>
                     <a href="">Controlo de Apeamentos</a>
                 </li>
+                <li>
+                    <a href="">LME</a>
+                </li>
             </ul>
         </div>
     </div>
