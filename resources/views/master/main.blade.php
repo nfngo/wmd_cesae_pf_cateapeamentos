@@ -25,25 +25,25 @@
 <body>
 <div id="app">
     {{-- Header --}}
-    @guest
-    @else
+{{--    @guest--}}
+{{--    @else--}}
         @component('master.header')
         @endcomponent
-    @endguest
+{{--    @endguest--}}
     {{-- .Header --}}
 
     {{-- Content --}}
-    <main>
+    <main class="mt-custom">
         @yield('content')
     </main>
     {{-- .Content --}}
 
     {{-- Footer --}}
-    @guest
-    @else
+{{--    @guest--}}
+{{--    @else--}}
         @component('master.footer')
         @endcomponent
-    @endguest
+{{--    @endguest--}}
     {{-- .Footer --}}
 </div>
 </body>

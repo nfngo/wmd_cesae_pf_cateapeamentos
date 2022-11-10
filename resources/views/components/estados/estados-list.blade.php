@@ -3,7 +3,7 @@
         <div class="col-12">
             <h1>Projectos</h1>
 
-            <form class="form-group" method="GET" action="{{url('/search/')}}">
+            <form class="form-group" method="GET" action="{{url('estados/search')}}">
                 <div class="form-group">
                     <label for="central">Central</label>
                     <input
@@ -103,13 +103,13 @@
                                 $pdsApea = "";
                             @endphp
                             <tr>
-                                <td>{{ $refExterna->ref_ext }}</td>
+                                <td>{{ $refExterna->id }}</td>
                                 <td>{{ $refExterna->acl_id }}</td>
                                 <td>{{ $refExterna->ian_ias }}</td>
                                 <td>{{ $refExterna->ifr }}</td>
                                 <td>{{ $refExterna->sp_fft }}</td>
 
-                                <td>{{ $refExterna->id }}</td>
+                                <td>{{ $refExterna->bald_id }}</td>
                                 <td>{{ $refExterna->estado_nemesis_bald_id }}</td>
                                 <td>{{ $refExterna->data_estado_global_bald}}</td>
                                 <td>

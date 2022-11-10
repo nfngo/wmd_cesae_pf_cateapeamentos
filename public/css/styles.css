@@ -15,6 +15,11 @@ body {
 }
 
 /* ---------------------------------- UTILS ---------------------------------- */
+
+.mt-custom {
+    margin-top: 78px;
+}
+
 a {
     text-decoration: none;
     transition: all 0.25s ease-in-out;

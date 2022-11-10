@@ -41,7 +41,7 @@
             </div>
             <ul id="offcanvas-menu" class="list-group">
                 <li class="active">
-                    <a href="">Controlo de Estados</a>
+                    <a href="{{url('estados')}}">Controlo de Estados</a>
                 </li>
                 <li>
                     <a href="">Controlo de Apeamentos</a>

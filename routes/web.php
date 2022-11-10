@@ -17,6 +17,5 @@ Route::get('/','EstadosController@index');
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('estados', 'EstadosController@index');
+Route::get('estados/search', 'EstadosController@search');
