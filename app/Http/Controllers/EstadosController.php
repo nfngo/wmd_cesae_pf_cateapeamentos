@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class EstadosController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $info = DB::table('ref_externas')
             ->join('acls', 'ref_externas.acl_id', '=', 'acls.id')
             ->join('balds', 'ref_externas.id', '=', 'balds.ref_externa_id')
@@ -29,12 +30,18 @@ class EstadosController extends Controller
 
         $estados = Estado::all();
 
+        $ref_externa = $request->ref_externa;
         $central = $request->central;
         $phase_id = $request->phase_id;
         $estado_id = $request->estado_id;
+        $faturado = $request->faturado;
 
         $andConditions = array();
         $orConditions = array();
+
+        if ($ref_externa != "") {
+            $andConditions[] = ['ref_externas.id', 'like', '%' . $ref_externa . '%'];
+        }
 
         if ($central != "") {
             $andConditions[] = ['ref_externas.acl_id', 'like', '%' . $central . '%'];
@@ -47,6 +54,13 @@ class EstadosController extends Controller
 
         if ($estado_id != "") {
             $andConditions[] = ['balds.estado_nemesis_bald_id', '=', $estado_id];
+        }
+
+        if ($faturado != "") {
+            if($faturado == 0) {
+                $orConditions[] = ['apeas.faturado', '=', null];
+            }
+            $andConditions[] = ['apeas.faturado', '=', $faturado];
         }
 
         $info = DB::table('ref_externas')
