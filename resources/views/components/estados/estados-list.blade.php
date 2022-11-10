@@ -50,7 +50,7 @@
                 <button class="btn btn-primary" type="submit">Procurar</button>
             </form>
             <div class="mb-3" style="overflow-x: scroll">
-                @if($refExternas->count() == 0)
+                @if($info->count() == 0)
                     <p>Não existem dados</p>
                 @else
                     <table class="table table-striped table-bordered" style="font-size: 0.75rem">
@@ -97,7 +97,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($refExternas as $refExterna)
+                        @foreach($info as $refExterna)
                             @php
                                 $pdsBald = "";
                                 $pdsApea = "";
@@ -105,16 +105,16 @@
                             <tr>
                                 <td>{{ $refExterna->ref_ext }}</td>
                                 <td>{{ $refExterna->acl_id }}</td>
-                                <td>{{ $refExterna->IAN_IAS }}</td>
-                                <td>{{ $refExterna->IFR }}</td>
-                                <td>{{ $refExterna->SP_FFT2016 }}</td>
+                                <td>{{ $refExterna->ian_ias }}</td>
+                                <td>{{ $refExterna->ifr }}</td>
+                                <td>{{ $refExterna->sp_fft }}</td>
 
                                 <td>{{ $refExterna->id }}</td>
-                                <td>{{ $refExterna->estado_global }}</td>
-                                <td>{{ $refExterna->data_estado_global}}</td>
+                                <td>{{ $refExterna->estado_nemesis_bald_id }}</td>
+                                <td>{{ $refExterna->data_estado_global_bald}}</td>
                                 <td>
                                     @foreach($estados as $estado)
-                                        @if($estado->id == $refExterna->estado_global)
+                                        @if($estado->id == $refExterna->estado_nemesis_bald_id)
                                             @php
                                                 $pdsBald = $estado->novo_estado;
                                             @endphp
@@ -123,8 +123,8 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    @if($refExterna->data_envio_proj_SP != '0000-00-00')
-                                        {{ $refExterna->data_envio_proj_SP}}
+                                    @if($refExterna->data_envio_proj_sp_bald != '0000-00-00')
+                                        {{ $refExterna->data_envio_proj_sp_bald}}
                                     @endif
                                 </td>
                                 <td>
@@ -192,14 +192,14 @@
                                 </td>
 
                                 <td>{{ $refExterna->apea_id }}</td>
-                                <td>{{ $refExterna->estado_global_apea }}</td>
+                                <td>{{ $refExterna->estado_nemesis_apea_id }}</td>
                                 <td>{{ $refExterna->data_estado_global_apea}}</td>
                                 <td>
                                     @if($refExterna->apea_id == "")
                                         Sem ordem
                                     @else
                                         @foreach($estados as $estado)
-                                            @if($estado->id == $refExterna->estado_global_apea)
+                                            @if($estado->id == $refExterna->estado_nemesis_apea_id)
                                                 @php
                                                     $pdsApea = $estado->novo_estado;
                                                 @endphp
@@ -293,7 +293,7 @@
                     </table>
                 @endif
             </div>
-            {{$refExternas->links()}}
+            {{$info->links()}}
         </div>
     </div>
 </div>
