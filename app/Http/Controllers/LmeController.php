@@ -77,8 +77,6 @@ class LmeController extends Controller
     {
         $lme = Lme::find($lme->id);
 
-
-        $lme->estado_nemesis_apea_id = $request->estado_nemesis_apea_id;
         $lme->data = $request->data;
         $lme->usd_ton_cobre = $request-> usd_ton_cobre;
         $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
