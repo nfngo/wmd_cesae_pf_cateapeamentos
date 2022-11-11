@@ -29,6 +29,7 @@ class CreateLmesTable extends Migration
             $table->decimal('lme_chumbo_kg_chumbo')->nullable();
             $table->decimal('custo_mix')->nullable();
             $table->decimal('custo_venda')->nullable();
+            $table->timestamps();
         });
     }
 

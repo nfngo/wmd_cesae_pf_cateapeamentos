@@ -28,6 +28,7 @@ class CreateBaldsTable extends Migration
 
             $table->foreign('ref_externa_id')->references('id')->on('ref_externas');
             $table->foreign('estado_nemesis_bald_id')->references('id')->on('estados');
+            $table->timestamps();
         });
     }
 

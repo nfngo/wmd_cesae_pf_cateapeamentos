@@ -24,6 +24,7 @@ class CreateAclsTable extends Migration
             $table->string('ifr');
             $table->string('ifr_xy');
             $table->string('ian_ias');
+            $table->timestamps();
         });
     }
 

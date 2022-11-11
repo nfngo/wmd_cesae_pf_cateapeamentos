@@ -21,6 +21,7 @@ class CreateCabosTable extends Migration
             $table->decimal('perc_lme_chumbo');
             $table->decimal('perc_peso_cobre');
             $table->decimal('perc_peso_chumbo');
+            $table->timestamps();
         });
     }
 

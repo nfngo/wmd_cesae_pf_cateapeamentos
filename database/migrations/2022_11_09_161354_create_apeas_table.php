@@ -31,6 +31,7 @@ class CreateApeasTable extends Migration
 
             $table->foreign('ref_externa_id')->references('id')->on('ref_externas');
             $table->foreign('estado_nemesis_apea_id')->references('id')->on('estados');
+            $table->timestamps();
         });
     }
 

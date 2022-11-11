@@ -19,6 +19,7 @@ class CreateEstadosTable extends Migration
             $table->string('novo_estado');
             $table->string('estado_bald');
             $table->string('estado_apea');
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ class CreateTarifasTable extends Migration
             $table->id();
             $table->decimal('custo_retirada');
             $table->decimal('custo_operacao');
+            $table->timestamps();
 
         });
     }

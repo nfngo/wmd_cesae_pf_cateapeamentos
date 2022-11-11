@@ -20,7 +20,14 @@ Auth::routes();
 Route::get('estados', 'EstadosController@index');
 Route::get('estados/search', 'EstadosController@search');
 
-// Lme
+//Apeamento
+Route::get('apea/{apea}/edit', 'ApeaController@edit');
+Route::put('apea/{apea}', 'ApeaController@update');
+//Baldeaçao
+Route::get('bald/{bald}/edit', 'BaldController@edit');
+Route::put('bald/{bald}', 'BaldController@update');
+
+//Lme
 Route::get('lme', 'LmeController@index');
 Route::get('lme/{lme}/edit', 'LmeController@edit');
 Route::put('lme/{lme}', 'LmeController@update');
