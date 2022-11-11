@@ -106,7 +106,7 @@
                     @if($info->count() == 0)
                         <p>Não existem dados</p>
                     @else
-                        <table id="controloEstados" class="table" style="font-size: 0.75rem">
+                        <table id="controloEstados" class="table">
                             <thead>
                             <tr class="bg-light-blue text-white bt-0 text-center">
                                 <th colspan="5"></th>

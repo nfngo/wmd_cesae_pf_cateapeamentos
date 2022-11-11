@@ -6,7 +6,7 @@
                 @if($lme->count() == 0)
                     <p>Não existem dados</p>
                 @else
-                    <table class="table table-striped table-bordered" style="font-size: 0.75rem">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th scope="col">Id</th>
