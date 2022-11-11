@@ -40,14 +40,14 @@
                 </div>
             </div>
             <ul id="offcanvas-menu" class="list-group">
-                <li class="active">
+                <li @if(Request::is('estados')) class="active" @endif>
                     <a href="{{url('estados')}}">Controlo de Estados</a>
                 </li>
-                <li>
-                    <a href="">Controlo de Apeamentos</a>
+                <li @if(Request::is('control-apea')) class="active" @endif>
+                    <a href="{{url('control-apea')}}">Controlo de Apeamentos</a>
                 </li>
                 <li>
-                    <a href="">LME</a>
+                    <a href="{{url('lme-board')}}">LME</a>
                 </li>
             </ul>
         </div>

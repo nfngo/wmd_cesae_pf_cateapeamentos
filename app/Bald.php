@@ -9,7 +9,7 @@ class Bald extends Model
     protected $casts = ['id' => 'string'];
     public $incrementing = false;
 
-    public function ref_externas(){
+    public function ref_externa(){
         return $this->belongsTo(RefExterna::class);
 
     }
@@ -19,6 +19,7 @@ class Bald extends Model
     }
 
     protected $fillable = [
+        'id',
         'estado_nemesis_bald_id',
         'data_estado_global_bald',
         'data_envio_proj_sp_bald',

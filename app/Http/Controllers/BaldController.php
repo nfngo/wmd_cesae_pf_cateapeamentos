@@ -74,7 +74,7 @@ class BaldController extends Controller
     {
          $bald = Bald::find($bald->id);
 
-
+             $bald->id =  $request->bald_id;
              $bald->estado_nemesis_bald_id = $request->estado_nemesis_bald_id;
              $bald->data_estado_global_bald = $request->data_estado_global_bald;
              $bald->data_envio_proj_sp_bald = $request-> data_envio_proj_sp_bald;
@@ -85,10 +85,11 @@ class BaldController extends Controller
              $bald->data_real_cadastro_bald = $request->data_real_cadastro_bald;
              $bald->data_plan_cadastro_bald = $request->data_plan_cadastro_bald;
 
+             $bald->save();
 
-               $bald->save();
+            $message = 'Baldeação ' . $bald->id . ' editada com sucesso.';
 
-            return redirect('estados')->with('status','Editado');
+            return redirect('estados')->with('status', $message);
     }
 
     /**

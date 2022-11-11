@@ -46,6 +46,22 @@ a:hover {
     background-color: var(--bg-secondary-header);
 }
 
+.text-color-dark-blue {
+    color: var(--dark-blue);
+}
+
+.text-color-light-blue {
+    color: var(--light-blue);
+}
+
+.text-color-blue {
+    color: var(--bg-blue);
+}
+
+.text-color-secondary-header {
+    color: var(--bg-secondary-header);
+}
+
 .border-dark-blue {
     border: 1px solid var(--dark-blue);
 }
@@ -61,6 +77,20 @@ a:hover {
     text-transform: uppercase;
     border-radius: 20px;
     transition: all 0.25s ease-in-out;
+}
+
+.btn-filled {
+    border: 2px solid var(--light-blue);
+    background-color: var(--light-blue);
+    color: white;
+}
+
+.btn-filled:hover,
+.btn-filled:active,
+.btn-filled:focus {
+    background-color: transparent;
+    color: var(--light-blue);
+    border: 2px solid var(--light-blue);
 }
 
 .btn-inverted {
@@ -104,6 +134,10 @@ a:hover {
 
 .card {
     border-radius: 20px;
+}
+
+table {
+    font-size: 0.75rem;
 }
 
 table tr:first-child th:first-child {

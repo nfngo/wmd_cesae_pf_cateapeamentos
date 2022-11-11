@@ -10,7 +10,7 @@ class Apea extends Model
     protected $casts = ['id' => 'string'];
     public $incrementing = false;
 
-    public function ref_externas(){
+    public function ref_externa(){
         return $this->belongsTo(RefExterna::class);
     }
 
@@ -18,8 +18,8 @@ class Apea extends Model
         return $this->hasMany(Estado::class);
     }
 
-
      protected $fillable = [
+         'id',
         'estado_nemesis_apea_id',
          'data_estado_global_apea',
          'data_envio_proj_sp_apea',

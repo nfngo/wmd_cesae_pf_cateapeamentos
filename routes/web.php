@@ -23,6 +23,7 @@ Route::get('estados/search', 'EstadosController@search');
 //Apeamento
 Route::get('apea/{apea}/edit', 'ApeaController@edit');
 Route::put('apea/{apea}', 'ApeaController@update');
+
 //Baldeaçao
 Route::get('bald/{bald}/edit', 'BaldController@edit');
 Route::put('bald/{bald}', 'BaldController@update');
@@ -42,4 +43,10 @@ Route::put('cabo/{cabo}', 'CaboController@update');
 Route::get('tarifas','TarifaController@index');
 Route::get('tarifa/{tarifa}/edit', 'TarifaController@edit');
 Route::put('tarifa/{tarifa}', 'TarifaController@update');
+
+//ControloApeamentos
+Route::get('control-apea', 'ControloApeaController@index');
+
+//LME BOARD
+Route::get('lme-board', 'LmeBoardController@index');
 

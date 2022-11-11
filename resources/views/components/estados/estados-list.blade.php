@@ -5,9 +5,7 @@
             @if (session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('status') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
             <form class="form-group my-4" method="GET" action="{{url('estados/search')}}">
@@ -86,7 +84,7 @@
                                 name="faturado"
                                 id="faturado"
                             >
-                                <option selected value="">Escolha uma opção </option>
+                                <option selected value="">Escolha uma opção</option>
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>
@@ -98,7 +96,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-2 d-flex align-items-end">
-                        <button class="btn btn-inverted w-100" type="submit">Procurar</button>
+                        <button class="btn btn-filled w-100" type="submit">Procurar</button>
                     </div>
                 </div>
             </form>
@@ -108,7 +106,7 @@
                     @if($info->count() == 0)
                         <p>Não existem dados</p>
                     @else
-                        <table id="controloEstados" class="table" style="font-size: 0.75rem">
+                        <table id="controloEstados" class="table">
                             <thead>
                             <tr class="bg-light-blue text-white bt-0 text-center">
                                 <th colspan="5"></th>
