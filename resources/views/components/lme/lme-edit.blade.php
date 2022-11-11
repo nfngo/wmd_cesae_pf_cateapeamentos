@@ -145,13 +145,13 @@
         readonly>
     </div>
     <div class="form-group">
-        <label for="custo_mix">custo_mix</label>
+        <label for="custo_venda">custo_venda</label>
         <input type="number"
-        id="custo_mix"
-        name="custo_mix"
-        value="{{$lme->custo_mix}}"
-        autocomplete="custo_mix"
-        placeholder="Insira o custo_mix"
+        id="custo_venda"
+        name="custo_venda"
+        value="{{$lme->custo_venda}}"
+        autocomplete="custo_venda"
+        placeholder="Insira o custo_venda"
         class="form-control"
         readonly>
     </div>
