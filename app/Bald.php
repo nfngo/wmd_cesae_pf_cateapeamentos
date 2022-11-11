@@ -9,7 +9,7 @@ class Bald extends Model
     protected $casts = ['id' => 'string'];
     public $incrementing = false;
 
-    public function ref_externas(){
+    public function ref_externa(){
         return $this->belongsTo(RefExterna::class);
 
     }
