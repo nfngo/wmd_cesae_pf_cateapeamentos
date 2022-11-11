@@ -2,6 +2,11 @@
     <div class="row">
         <div class="col-12">
             <p class="my-4 text-uppercase fs-5">Editar Apeamento</p>
+            <p>{{$apea->ref_externa->id}}</p>
+            <p>{{$apea->ref_externa->acl_id}}</p>
+            <p>{{$apea->ref_externa->acl->ian_ias}}</p>
+            <p>{{$apea->ref_externa->acl->ifr}}</p>
+            <p>{{$apea->ref_externa->acl->sp_ftt}}</p>
             <div class="card border-0 shadow-lg mt-5 p-3">
                 <form method="POST" action="{{ url('apea/'. $apea->id) }}">
                     @csrf
@@ -182,7 +187,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-md-10">
+                        <div class="col-12 col-md-8">
                             <div class="form-group">
                                 <label class="mb-1" for="faturado">Faturado</label>
                                 <br>
@@ -197,6 +202,9 @@
                                     <label class="form-check-label" for="faturadoF">Não</label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <a href="{{url('estados')}}" class="w-100 my-3 btn btn-inverted">Cancelar</a>
                         </div>
                         <div class="col-12 col-md-2">
                             <button type="submit" class="w-100 my-3 btn btn-inverted">Editar</button>

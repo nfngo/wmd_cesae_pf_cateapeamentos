@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RefExterna extends Model
 {
-    public function acls(){
+    protected $casts = ['id' => 'string'];
+    public $incrementing = false;
+
+    public function acl(){
         return $this->belongsTo(Acl::class);
     }
 

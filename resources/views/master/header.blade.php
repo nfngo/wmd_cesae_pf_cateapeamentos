@@ -47,7 +47,7 @@
                     <a href="">Controlo de Apeamentos</a>
                 </li>
                 <li>
-                    <a href="">LME</a>
+                    <a href="{{url('lme-board')}}">LME</a>
                 </li>
             </ul>
         </div>
