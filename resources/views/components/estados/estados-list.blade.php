@@ -5,9 +5,7 @@
             @if (session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('status') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
             <form class="form-group my-4" method="GET" action="{{url('estados/search')}}">
@@ -86,7 +84,7 @@
                                 name="faturado"
                                 id="faturado"
                             >
-                                <option selected value="">Escolha uma opção </option>
+                                <option selected value="">Escolha uma opção</option>
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Apea;
 use App\Estado;
+use App\RefExterna;
 use Illuminate\Http\Request;
 
 class ApeaController extends Controller
@@ -91,7 +92,7 @@ class ApeaController extends Controller
 
         $apea->save();
 
-        $message = 'Apeamento ' . $apea->id . 'editado com sucesso.';
+        $message = 'Apeamento ' . $apea->id . ' editado com sucesso.';
 
         return redirect('estados')->with('status', $message);
 

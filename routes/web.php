@@ -43,5 +43,10 @@ Route::get('tarifas','TarifaController@index');
 Route::get('tarifa/{tarifa}/edit', 'TarifaController@edit');
 Route::put('tarifa/{tarifa}', 'TarifaController@update');
 
+<<<<<<< HEAD
 //ControloApeamentos
 Route::get('control-apea', 'ControloApeaController@index');
+=======
+Route::get('lme-board', 'LmeBoardController@index');
+
+>>>>>>> db552b9a0d8857d4eb7e48896b4f4305d6f3d2fe
