@@ -86,7 +86,7 @@ class BaldController extends Controller
              $bald->data_plan_cadastro_bald = $request->data_plan_cadastro_bald;
 
 
-               $bald->save();
+             $bald->save();
 
             return redirect('estados')->with('status','Editado');
     }

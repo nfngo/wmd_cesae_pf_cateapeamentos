@@ -14,7 +14,8 @@ class ControloApeaController extends Controller
      */
     public function index()
     {
-        //
+        $control_apea = ControloApea::paginate(12);
+        return view('pages.relatorio-controlo.index', ['control_apea' => $control_apea]);
     }
 
     /**
