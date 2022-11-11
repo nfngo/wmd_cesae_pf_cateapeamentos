@@ -1,6 +1,6 @@
 @extends('master.main')
 
 @section('content')
-    @component('components.lme.lme-create')
+    @component('components.cabos.edit', ['cabo' => $cabo])
     @endcomponent
 @endsection

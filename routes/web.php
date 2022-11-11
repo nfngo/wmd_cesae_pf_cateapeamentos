@@ -20,4 +20,18 @@ Auth::routes();
 Route::get('estados', 'EstadosController@index');
 Route::get('estados/search', 'EstadosController@search');
 
+// Lme
 Route::get('lme', 'LmeController@index');
+Route::get('lme/{lme}/edit', 'LmeController@edit');
+Route::put('lme/{lme}', 'LmeController@update');
+
+// Cabos
+Route::get('cabos','CaboController@index');
+Route::get('cabo/{cabo}/edit', 'CaboController@edit');
+Route::put('cabo/{cabo}', 'CaboController@update');
+
+// Tarifas
+Route::get('tarifas','TarifaController@index');
+Route::get('tarifa/{tarifa}/edit', 'TarifaController@edit');
+Route::put('tarifa/{tarifa}', 'TarifaController@update');
+

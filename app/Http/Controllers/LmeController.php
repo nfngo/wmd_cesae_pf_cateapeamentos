@@ -36,16 +36,21 @@ class LmeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'data' => 'required',
+            ]);
+
+        Lme::create($request->all());
+        return redirect('lme')->with('status','Item created successfully!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Material  $material
+     * @param  \App\Lme  
      * @return \Illuminate\Http\Response
      */
-    public function show(Material $material)
+    public function show(Lme $lme)
     {
         //
     }
@@ -53,33 +58,54 @@ class LmeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Material  $material
+     * @param  \App\Material  
      * @return \Illuminate\Http\Response
      */
-    public function edit(Material $material)
+    public function edit(Lme $lme)
     {
-
+        return view('pages.lme.edit', ['lme' => $lme]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Material  $material
+     * @param  \App\Material  
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Material $material)
+    public function update(Request $request, Lme $lme)
     {
-        //
+        $lme = Lme::find($lme->id);
+
+
+        $lme->estado_nemesis_apea_id = $request->estado_nemesis_apea_id;
+        $lme->data = $request->data;
+        $lme->usd_ton_cobre = $request-> usd_ton_cobre;
+        $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
+        $lme->rate_usd_euro = $request->rate_usd_euro;
+        $lme->preco_venda_plastico = $request->preco_venda_plastico;
+        $lme->preco_metal_kg_cabo_plastico = $request->preco_metal_kg_cabo_plastico;
+        $lme->lme_cobre_kg_plastico = $request->lme_cobre_kg_plastico;
+        $lme->lme_chumbo_kg_plastico = $request->lme_chumbo_kg_plastico;
+        $lme->preco_venda_chumbo = $request->preco_venda_chumbo;
+        $lme->preco_metal_kg_cabo_chumbo = $request->preco_metal_kg_cabo_chumbo;
+        $lme->lme_cobre_kg_chumbo = $request->lme_cobre_kg_chumbo;
+        $lme->lme_chumbo_kg_chumbo = $request->lme_chumbo_kg_chumbo;
+        $lme->custo_mix = $request->custo_mix;
+        $lme->custo_venda = $request->custo_venda;
+
+        $lme->save();
+
+        return redirect('estados')->with('status','Editado');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Material  $material
-     * @return \Illuminate\Http\Response
+     * @param  \App\Lme  
+     * @return \Illuminate\Http\Lme
      */
-    public function destroy(Material $material)
+    public function destroy(Lme $lme)
     {
         //
     }
