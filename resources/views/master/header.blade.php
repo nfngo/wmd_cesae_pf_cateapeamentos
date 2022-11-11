@@ -44,7 +44,7 @@
                     <a href="{{url('estados')}}">Controlo de Estados</a>
                 </li>
                 <li>
-                    <a href="">Controlo de Apeamentos</a>
+                    <a href="{{url('control-apea')}}">Controlo de Apeamentos</a>
                 </li>
                 <li>
                     <a href="{{url('lme-board')}}">LME</a>
