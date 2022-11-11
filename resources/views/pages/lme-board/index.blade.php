@@ -9,8 +9,10 @@
     @endforeach
     @component('components.lme.lme-list', ['lme' => $lme])
     @endcomponent
-{{--    @component('components.lme-material.lme-material-list', ['plastico' => $plastico])--}}
-{{--    @endcomponent--}}
-{{--    @component('components.lme-material.lme-material-list', ['chumbo' => $chumbo])--}}
-{{--    @endcomponent--}}
+
+    @component('components.lme-material.lme-material-list', ['materiais' => $materiais[0]])
+    @endcomponent
+
+    @component('components.lme-material.lme-material-list', ['materiais' => $materiais[1]])
+    @endcomponent
 @endsection

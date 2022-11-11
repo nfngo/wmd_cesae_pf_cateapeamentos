@@ -2,12 +2,30 @@
     <div class="row">
         <div class="col-12">
             <p class="my-4 text-uppercase fs-5">Editar Apeamento</p>
-            <p>{{$apea->ref_externa->id}}</p>
-            <p>{{$apea->ref_externa->acl_id}}</p>
-            <p>{{$apea->ref_externa->acl->ian_ias}}</p>
-            <p>{{$apea->ref_externa->acl->ifr}}</p>
-            <p>{{$apea->ref_externa->acl->sp_ftt}}</p>
-            <div class="card border-0 shadow-lg mt-5 p-3">
+            <div class="row mt-5 px-3 text-color-light-blue">
+                <div class="col-12 col-sm-3 d-flex flex-column">
+                    <span class="fw-semibold">Ref. Externa</span>
+                    <p>{{$apea->ref_externa->id}}</p>
+                </div>
+                <div class="col-12 col-sm-3">
+                    <span class="fw-semibold">Central</span>
+                    <p>{{$apea->ref_externa->acl_id}}</p>
+                </div>
+                <div class="col-12 col-sm-2">
+                    <span class="fw-semibold">IAN IAS</span>
+                    <p>{{$apea->ref_externa->acl->ian_ias}}</p>
+                </div>
+                <div class="col-12 col-sm-2">
+                    <span class="fw-semibold">OCR</span>
+                    <p>{{$apea->ref_externa->acl->ifr}}</p>
+                </div>
+                <div class="col-12 col-sm-2">
+                    <span class="fw-semibold">SP</span>
+                    <p>{{$apea->ref_externa->acl->sp_fft}}</p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-lg mt-3 p-3">
                 <form method="POST" action="{{ url('apea/'. $apea->id) }}">
                     @csrf
                     @method('PUT')
@@ -204,10 +222,10 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-2">
-                            <a href="{{url('estados')}}" class="w-100 my-3 btn btn-inverted">Cancelar</a>
+                            <a href="{{url()->previous()}}" class="w-100 my-3 btn btn-inverted">Cancelar</a>
                         </div>
                         <div class="col-12 col-md-2">
-                            <button type="submit" class="w-100 my-3 btn btn-inverted">Editar</button>
+                            <button type="submit" class="w-100 my-3 btn btn-filled">Editar</button>
                         </div>
                     </div>
                 </form>

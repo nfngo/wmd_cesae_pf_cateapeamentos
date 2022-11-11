@@ -19,6 +19,7 @@ class Bald extends Model
     }
 
     protected $fillable = [
+        'id',
         'estado_nemesis_bald_id',
         'data_estado_global_bald',
         'data_envio_proj_sp_bald',

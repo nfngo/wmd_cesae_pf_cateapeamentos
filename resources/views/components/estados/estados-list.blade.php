@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-2 d-flex align-items-end">
-                        <button class="btn btn-inverted w-100" type="submit">Procurar</button>
+                        <button class="btn btn-filled w-100" type="submit">Procurar</button>
                     </div>
                 </div>
             </form>

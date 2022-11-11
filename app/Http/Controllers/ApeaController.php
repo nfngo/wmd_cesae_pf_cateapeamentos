@@ -77,6 +77,7 @@ class ApeaController extends Controller
     {
         $apea = Apea::find($apea->id);
 
+        $apea->id = $request->apea_id;
         $apea->estado_nemesis_apea_id = $request->estado_nemesis_apea_id;
         $apea->data_estado_global_apea = $request->data_estado_global_apea;
         $apea->data_envio_proj_sp_apea = $request->data_envio_proj_sp_apea;

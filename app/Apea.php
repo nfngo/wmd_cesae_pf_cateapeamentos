@@ -19,6 +19,7 @@ class Apea extends Model
     }
 
      protected $fillable = [
+         'id',
         'estado_nemesis_apea_id',
          'data_estado_global_apea',
          'data_envio_proj_sp_apea',
