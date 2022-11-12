@@ -46,7 +46,7 @@
                 <li @if(Request::is('control-apea')) class="active" @endif>
                     <a href="{{url('control-apea')}}">Controlo de Apeamentos</a>
                 </li>
-                <li>
+                <li @if(Request::is('lme-board')) class="active" @endif>
                     <a href="{{url('lme-board')}}">LME</a>
                 </li>
             </ul>

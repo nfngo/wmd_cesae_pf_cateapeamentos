@@ -14,7 +14,7 @@ class CaboController extends Controller
      */
     public function index()
     {
-        $cabo = Cabo::paginate(12);
+        $cabo = Cabo::all();
         return view('pages.cabos.index', ['cabo' => $cabo]);
     }
      /**
@@ -41,7 +41,7 @@ class CaboController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Lme  
+     * @param  \App\Lme
      * @return \Illuminate\Http\Response
      */
     public function show(Cabo $cabo)
@@ -52,7 +52,7 @@ class CaboController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Material  
+     * @param  \App\Material
      * @return \Illuminate\Http\Response
      */
     public function edit(Cabo $cabo)
@@ -64,15 +64,13 @@ class CaboController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Material  
+     * @param  \App\Material
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cabo $cabo)
     {
         $cabo = Cabo::find($cabo->id);
 
-
-        $cabo->material = $request->material;
         $cabo->perc_mix_cabo = $request->perc_mix_cabo;
         $cabo->perc_lme_cobre = $request->perc_lme_cobre;
         $cabo->perc_lme_chumbo = $request->perc_lme_chumbo;
@@ -81,13 +79,13 @@ class CaboController extends Controller
 
         $cabo->save();
 
-        return redirect('cabos')->with('status','Editado');
+        return redirect('lme-board')->with('status','Cabo de ' . $cabo->material . ' editado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Lme  
+     * @param  \App\Lme
      * @return \Illuminate\Http\Lme
      */
     public function destroy(Cabo $cabo)
