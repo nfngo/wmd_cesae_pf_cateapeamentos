@@ -1,83 +1,117 @@
-<h1>Edit</h1>
-<form action="{{url('cabo/'.$cabo->id)}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    <div class="form-group">
-        <!-- Select -->
-        <label for="material">material</label>
-        <input type="text"
-        id="material"
-        name="material"
-        value="{{$cabo->material}}"
-        placeholder="Insira a material"
-        class="form-control"
-        required>
+<div class="card shadow-lg p-3 border-0">
+    <div class="row cabo-card-content">
+        <div id="caboStatic_{{$cabo->id}}" class="card-static row m-0 p-0">
+            <p class="text-color-secondary-header m-0 fs-4 fw-semibold">{{ucfirst($cabo->material)}}</p>
+            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+                <span class="fw-semibold">% no Mix de cabo</span>
+                <span class="fs-3 text-color-light-blue">{{$cabo->perc_mix_cabo}}%</span>
+            </div>
+            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+                <span class="fw-semibold">% LME Cobre</span>
+                <span class="fs-3 text-color-light-blue">{{$cabo->perc_lme_cobre}}%</span>
+            </div>
+            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+                <span class="fw-semibold">% LME Chumbo</span>
+                <span class="fs-3 text-color-light-blue">{{$cabo->perc_lme_chumbo}}%</span>
+            </div>
+            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+                <span class="fw-semibold">% Peso Cabo em cobre</span>
+                <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_cobre}}%</span>
+            </div>
+            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+                <span class="fw-semibold">% Peso Cabo em chumbo</span>
+                <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_chumbo}}%</span>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+                <button id="caboEditBtn_{{$cabo->id}}" class="btn btn-sm btn-inverted">Editar</button>
+            </div>
+        </div>
+        <form id="caboForm_{{$cabo->id}}" class="card-form" action="{{url('cabo/'.$cabo->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+            <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Editar {{ucfirst($cabo->material)}}</p>
+            <div class="row">
+                <div class="form-group mb-2 col-12 col-sm-6">
+                    <label class="fw-semibold" for="perc_mix_cabo">% no Mix de cabo</label>
+                    <input type="number"
+                           id="perc_mix_cabo"
+                           name="perc_mix_cabo"
+                           value="{{$cabo->perc_mix_cabo}}"
+                           autocomplete="perc_mix_cabo"
+                           placeholder="Ex. 12,34"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.1"
+                           required>
+                </div>
+                <div class="form-group mb-2 col-12 col-sm-6">
+                    <label class="fw-semibold" for="perc_lme_cobre">% LME Cobre</label>
+                    <input type="number"
+                           id="perc_lme_cobre"
+                           name="perc_lme_cobre"
+                           value="{{$cabo->perc_lme_cobre}}"
+                           autocomplete="perc_lme_cobre"
+                           placeholder="Ex. 12,34"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.1"
+                           required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group mb-2 col-12 col-sm-6">
+                    <label class="fw-semibold" for="perc_lme_chumbo">% LME Chumbo</label>
+                    <input type="number"
+                           id="perc_lme_chumbo"
+                           name="perc_lme_chumbo"
+                           value="{{$cabo->perc_lme_chumbo}}"
+                           autocomplete="perc_lme_chumbo"
+                           placeholder="Ex. 12,34"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.1"
+                           required>
+                </div>
+                <div class="form-group mb-2 col-12 col-sm-6">
+                    <label class="fw-semibold" for="perc_peso_cobre">% Peso Cabo em Cobre</label>
+                    <input type="number"
+                           id="perc_peso_cobre"
+                           name="perc_peso_cobre"
+                           value="{{$cabo->perc_peso_cobre}}"
+                           autocomplete="perc_peso_cobre"
+                           placeholder="Ex. 12,34"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.1"
+                           required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-12 col-sm-6">
+                    <label class="fw-semibold" for="perc_peso_chumbo">% Peso Cabo em Chumbo</label>
+                    <input type="number"
+                           id="perc_peso_chumbo"
+                           name="perc_peso_chumbo"
+                           value="{{$cabo->perc_peso_chumbo}}"
+                           autocomplete="perc_peso_chumbo"
+                           placeholder="Ex. 12,34"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.1"
+                           required>
+                </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end">
+                <button id="caboCancelBtn_{{$cabo->id}}" type="button" class="mt-3 mx-3 btn btn-sm btn-inverted">
+                    Cancelar
+                </button>
+                <button type="submit" class="mt-3 btn btn-sm btn-filled">Gravar</button>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="perc_mix_cabo">perc_mix_cabo</label>
-        <input type="number"
-        id="perc_mix_cabo"
-        name="perc_mix_cabo"
-        value="{{$cabo->perc_mix_cabo}}"
-        autocomplete="perc_mix_cabo"
-        placeholder="Insira o perc_mix_cabo"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
-        <label for="perc_lme_cobre">perc_lme_cobre</label>
-        <input type="number"
-        id="perc_lme_cobre"
-        name="perc_lme_cobre"
-        value="{{$cabo->perc_lme_cobre}}"
-        autocomplete="perc_lme_cobre"
-        placeholder="Insira o perc_lme_cobre"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
-        <label for="perc_lme_chumbo">perc_lme_chumbo</label>
-        <input type="number"
-        id="perc_lme_chumbo"
-        name="perc_lme_chumbo"
-        value="{{$cabo->perc_lme_chumbo}}"
-        autocomplete="perc_lme_chumbo"
-        placeholder="Insira o perc_lme_chumbo"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
-        <label for="perc_lme_chumbo">perc_lme_chumbo</label>
-        <input type="number"
-        id="perc_lme_chumbo"
-        name="perc_lme_chumbo"
-        value="{{$cabo->perc_lme_chumbo}}"
-        autocomplete="perc_lme_chumbo"
-        placeholder="Insira o perc_lme_chumbo"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
-        <label for="perc_peso_cobre">perc_peso_cobre</label>
-        <input type="number"
-        id="perc_peso_cobre"
-        name="perc_peso_cobre"
-        value="{{$cabo->perc_peso_cobre}}"
-        autocomplete="perc_peso_cobre"
-        placeholder="Insira o perc_peso_cobre"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
-        <label for="perc_peso_chumbo">perc_peso_chumbo</label>
-        <input type="number"
-        id="perc_peso_chumbo"
-        name="perc_peso_chumbo"
-        value="{{$cabo->perc_peso_chumbo}}"
-        autocomplete="perc_peso_chumbo"
-        placeholder="Insira o perc_peso_chumbo"
-        class="form-control"
-        required>
-    </div>
-    <button type="submit" class="mt-2 mb-5 btn btn-primary">Submit</button>
-</form>
+
+</div>
+

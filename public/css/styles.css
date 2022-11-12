@@ -136,6 +136,46 @@ a:hover {
     border-radius: 20px;
 }
 
+.card-icon {
+    height: 150px;
+}
+
+.tarifas-card-content {
+    overflow: hidden;
+    max-height: 240px;
+}
+
+.tarifas-card-content .card-form {
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-in-out;
+}
+
+.tarifas-card-content .card-static {
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-in-out;
+}
+
+.cabo-card-content {
+    overflow: hidden;
+    max-height: 320px;
+}
+
+.cabo-card-content .card-static {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.cabo-card-content .card-form {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
 table {
     font-size: 0.75rem;
 }

@@ -1,27 +1,58 @@
-<h1>Edit</h1>
-<form action="{{url('tarifa/'.$tarifa->id)}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    <div class="form-group">
-        <label for="custo_retirada">custo_retirada</label>
-        <input type="number"
-        id="custo_retirada"
-        name="custo_retirada"
-        value="{{$tarifa->custo_retirada}}"
-        placeholder="Insira a custo_retirada"
-        class="form-control"
-        required>
+<div class="card shadow-lg p-3 border-0">
+    <div class="row">
+        <div class="col-6 d-flex justify-content-center align-items-center">
+            <img class="card-icon" src="{{url('/images/money.png')}}" alt="Money">
+        </div>
+        <div class="col-6 tarifas-card-content">
+            <form id="tarifasForm" class="card-form" action="{{url('tarifa/'.$tarifa->id)}}" method="POST">
+                @csrf
+                @method('PUT')
+                <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Editar Tarifas</p>
+                <div class="form-group mb-2">
+                    <label class="fw-semibold mb-1" for="custo_retirada">Custo de retirada</label>
+                    <input type="number"
+                           id="custo_retirada"
+                           name="custo_retirada"
+                           value="{{$tarifa->custo_retirada}}"
+                           placeholder="Insira a custo de retirada"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.01"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label  class="fw-semibold mb-1" for="custo_operacao">Custo de operacao</label>
+                    <input type="number"
+                           id="custo_operacao"
+                           name="custo_operacao"
+                           value="{{$tarifa->custo_operacao}}"
+                           autocomplete="custo_operacao"
+                           placeholder="Insira o custo de operacao"
+                           class="form-control input-custom"
+                           min="0"
+                           step="0.01"
+                           required>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button id="tarifasCancelBtn" type="button" class="mt-3 mx-3 btn btn-sm btn-inverted">Cancelar</button>
+                    <button type="submit" class="mt-3 btn btn-sm btn-filled">Gravar</button>
+                </div>
+            </form>
+            <div id="tarifasStatic" class="card-static">
+                <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Tarifas</p>
+                <div class="d-flex flex-column mb-1">
+                    <span class="fw-semibold">Custo de retirada</span>
+                    <span class="fs-3 text-color-light-blue">{{$tarifa->custo_retirada}}€</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <span class="fw-semibold">Custo de operação</span>
+                    <span class="fs-3 text-color-light-blue">{{$tarifa->custo_operacao}}€</span>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="button" id="tarifasBtn" class="btn btn-sm btn-inverted">Editar</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="form-group">
-        <label for="custo_operacao">custo_operacao</label>
-        <input type="number"
-        id="custo_operacao"
-        name="custo_operacao"
-        value="{{$tarifa->custo_operacao}}"
-        autocomplete="custo_operacao"
-        placeholder="Insira o custo_operacao"
-        class="form-control"
-        required>
-    </div>
-    <button type="submit" class="mt-2 mb-5 btn btn-primary">Submit</button>
-</form>
+</div>
