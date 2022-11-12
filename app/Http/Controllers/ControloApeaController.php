@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Apea;
 use App\ControloApea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\CrudOperationSortable;
 
 class ControloApeaController extends Controller
 {
@@ -12,10 +15,12 @@ class ControloApeaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $control_apea = ControloApea::paginate(12);
-        return view('pages.relatorio-controlo.index', ['control_apea' => $control_apea]);
+    public function index(){
+
+
+        $control_apea = ControloApea::sortable()->paginate(12);
+
+        return view('pages.relatorio-controlo.index', ['control_apea'=>$control_apea]);
     }
 
     /**
@@ -83,4 +88,30 @@ class ControloApeaController extends Controller
     {
         //
     }
+
+    public function search(Request $request){
+
+        $apea_id = $request->apea_id;
+        $material_id = $request->material_id;
+        $data = $request->data;
+
+        $andConditions = array();
+
+        if ($apea_id != "") {
+            $andConditions[] = ['controlo_apeas.apea_id', 'like', '%' .$apea_id. '%'];
+        }
+
+        if($material_id != ""){
+            $andConditions[] = ['controlo_apeas.material_id', 'like', '%' .$material_id. '%'];
+        }
+
+        $control_apea = ControloApea::where($andConditions)
+            ->whereDate('controlo_apeas.data', 'like', '%' .$data.'%')
+            ->sortable()
+            ->paginate(12)
+            ->appends(['apea_id' => $apea_id, 'data'=>$data, 'material_id'=>$material_id]);
+
+           return view('pages.relatorio-controlo.index', ['control_apea'=>$control_apea]);
+    }
+
 }
