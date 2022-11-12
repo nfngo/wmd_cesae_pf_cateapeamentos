@@ -25,7 +25,7 @@ class LmeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.lme.lme-create');
     }
 
     /**

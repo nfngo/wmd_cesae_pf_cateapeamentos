@@ -32,6 +32,7 @@ Route::put('bald/{bald}', 'BaldController@update');
 Route::get('lme', 'LmeController@index');
 Route::get('lme/{lme}/edit', 'LmeController@edit');
 Route::put('lme/{lme}', 'LmeController@update');
+Route::get('lme/create', 'LmeController@create');
 
 // Cabos
 Route::get('cabos','CaboController@index');
