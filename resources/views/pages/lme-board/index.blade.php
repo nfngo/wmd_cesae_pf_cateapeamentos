@@ -21,14 +21,20 @@
             @endforeach
         </div>
 
-        @component('components.lme.lme-list', ['lme' => $lme])
-        @endcomponent
+        <div class="row mt-5 flex-nowrap overflow-hidden position-relative">
+            <button type="button" id="cardSwapBtn" class="btn btn-inverted card-btn-swap">Swap</button>
+            <div id="lmeContainer" class="col-12 col-md-6">
+                @component('components.lme.lme-list', ['lme' => $lme])
+                @endcomponent
+            </div>
+            <div class="col-12 col-md-6">
+                @component('components.lme-material.lme-material-list', ['materiais' => $materiais[0], 'tipo' => 'Plástico'])
+                @endcomponent
+            </div>
+            <div class="col-12 col-md-6">
+                @component('components.lme-material.lme-material-list', ['materiais' => $materiais[1], 'tipo' => 'Chumbo'])
+                @endcomponent
+            </div>
+        </div>
     </div>
-
-
-    @component('components.lme-material.lme-material-list', ['materiais' => $materiais[0]])
-    @endcomponent
-
-    @component('components.lme-material.lme-material-list', ['materiais' => $materiais[1]])
-    @endcomponent
 @endsection

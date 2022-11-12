@@ -8,6 +8,11 @@ const cabosStaticList = document.querySelectorAll('[id^="caboStatic_"]');
 const cabosFormList = document.querySelectorAll('[id^="caboForm_"]');
 const cabosCancelBtnList = document.querySelectorAll('[id^="caboCancelBtn_"]');
 
+const cardSwapBtn = document.getElementById('cardSwapBtn');
+
+const plasticoContainer = document.getElementById('PlásticoContainer');
+const chumboContainer = document.getElementById('ChumboContainer');
+
 tarifasBtn.addEventListener('click', (e) => {
     e.preventDefault();
     tarifasStatic.style.opacity = '0';
@@ -55,3 +60,29 @@ cabosCancelBtnList.forEach((cancelBtn, index) => {
         cabosFormList[index].style.zIndex = '-1';
     })
 });
+
+let opacity = window.getComputedStyle(plasticoContainer).getPropertyValue('opacity');
+
+cardSwapBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if(opacity === '1') {
+        plasticoContainer.style.opacity = '0';
+        plasticoContainer.style.transform = "translateX(-100%)";
+        plasticoContainer.style.zIndex = "-1";
+
+        chumboContainer.style.opacity = '1';
+        chumboContainer.style.transform = "translateX(-100%)";
+        chumboContainer.style.zIndex = "1";
+        opacity = '0';
+    } else {
+        plasticoContainer.style.opacity = '1';
+        plasticoContainer.style.transform = "translateX(0%)";
+        plasticoContainer.style.zIndex = "-1";
+
+        chumboContainer.style.opacity = '0';
+        chumboContainer.style.transform = "translateX(0%)";
+        chumboContainer.style.zIndex = "-1";
+        opacity = '1';
+    }
+})

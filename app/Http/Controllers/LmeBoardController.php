@@ -15,7 +15,9 @@ class LmeBoardController extends Controller
         $cabos = Cabo::all();
 
         $lme = DB::table('lmes')
-            ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')->paginate(10);
+            ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
+            ->orderBy('data', 'desc')
+            ->paginate(10);
 
         $plastico = DB::table('lmes')
             ->select('id', DB::raw('preco_venda_plastico as preco_venda'), DB::raw('preco_metal_kg_cabo_plastico as preco_metal_kg_cabo'),
