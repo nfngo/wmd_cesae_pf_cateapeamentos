@@ -3,16 +3,6 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="id">ID</label>
-        <input type="number"
-        id="id"
-        name="id"
-        value="{{$lme->id}}"
-        placeholder="Insira o id"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
         <label for="data">Data</label>
         <input type="date"
         id="data"
@@ -31,8 +21,7 @@
         value="{{$lme->usd_ton_cobre}}"
         autocomplete="usd_ton_cobre"
         placeholder="Insira o usd_ton_cobre"
-        class="form-control"
-        required>
+        class="form-control">
     </div>
     <div class="form-group">
         <label for="name">usd_ton_chumbo</label>
@@ -43,8 +32,7 @@
         value="{{$lme->usd_ton_chumbo}}"
         autocomplete="usd_ton_chumbo"
         placeholder="Insira o usd_ton_chumbo"
-        class="form-control"
-        required>
+        class="form-control">
     </div>
     <div class="form-group">
         <label for="rate_usd_euro">rate_usd_euro</label>
@@ -55,8 +43,7 @@
         value="{{$lme->rate_usd_euro}}"
         autocomplete="rate_usd_euro"
         placeholder="Insira o rate_usd_euro"
-        class="form-control"
-        required>
+        class="form-control">
     </div>
     <button type="submit" class="mt-2 mb-5 btn btn-primary">Submit</button>
 </form>

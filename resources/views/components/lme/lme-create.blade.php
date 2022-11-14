@@ -2,16 +2,6 @@
 <form action="{{url('lme/create')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-        <label for="id">ID</label>
-        <input type="int"
-        id="id"
-        name="id"
-        autocomplete="id"
-        placeholder="Insira o id"
-        class="form-control"
-        required>
-    </div>
-    <div class="form-group">
         <label for="name">Data</label>
         <input type="date"
         id="data"
