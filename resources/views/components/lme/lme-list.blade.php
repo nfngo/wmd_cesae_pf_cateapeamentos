@@ -5,7 +5,10 @@
                 <div class="col-12">
                     <p class="text-color-secondary-header m-3 fs-4 fw-semibold">LME</p>
                 </div>
-                <a href="#" class="position-absolute btn btn-filled lme-add-btn"><span>+</span></a>
+                <button type="button" class="position-absolute btn btn-filled lme-add-btn" data-bs-toggle="modal"
+                        data-bs-target="#createModal">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
             <div class="mb-3 overflow-hidden">
                 @if($lme->count() == 0)
@@ -16,9 +19,9 @@
                         <tr class="bg-light-blue text-white bt-0">
                             {{--                            <th class="rounded-0" scope="col">Id</th>--}}
                             <th class="rounded-0" scope="col">Mês</th>
-                            <th scope="col">USD/Ton Cobre</th>
-                            <th scope="col">USD/Ton Chumbo</th>
-                            <th scope="col">Exchange rate USD/€</th>
+                            <th scope="col">USD / Ton Cobre</th>
+                            <th scope="col">USD / Ton Chumbo</th>
+                            <th scope="col">Exchange rate USD / €</th>
                             <th scope="col">Custo MIX</th>
                             <th class="rounded-0" scope="col">Custo de Venda</th>
                         </tr>
@@ -36,9 +39,10 @@
                                 <td class="d-flex align-items-center justify-content-between">
                                     {{ $item->custo_venda }}€
                                     @if($loop->first)
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#editModal"
-                                                onclick="populateEditForm({{json_encode($item)}})">Editar
+                                        <button type="button" class="position-absolute btn btn-filled lme-edit-btn" data-bs-toggle="modal"
+                                                data-bs-target="#editModal" data-toggle="tooltip" title="Editar último mês"
+                                                onclick="populateEditForm({{json_encode($item)}})">
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
                                     @endif
                                 </td>

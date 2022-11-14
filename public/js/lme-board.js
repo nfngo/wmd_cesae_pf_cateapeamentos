@@ -91,7 +91,9 @@ cardSwapBtn.addEventListener('click', (e) => {
 
 const populateEditForm = (item) => {
     editForm.action = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/lme/${item.id}`;
+    document.getElementById('lme_item_id').value = item.id;
     document.getElementById('usd_ton_cobre').value = item.usd_ton_cobre;
     document.getElementById('usd_ton_chumbo').value = item.usd_ton_chumbo;
     document.getElementById('rate_usd_euro').value = item.rate_usd_euro;
+    document.getElementById('data').value = item.data;
 };
