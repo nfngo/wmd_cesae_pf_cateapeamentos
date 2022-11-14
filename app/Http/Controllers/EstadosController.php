@@ -27,7 +27,6 @@ class EstadosController extends Controller
 
     public function search(Request $request)
     {
-
         $estados = Estado::all();
 
         $ref_externa = $request->ref_externa;

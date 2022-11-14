@@ -1,5 +1,8 @@
 <?php
 
+use App\Exports\RelatoriosExport;
+use App\Http\Controllers\RelatorioController;
+use App\Relatorio;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +55,6 @@ Route::get('control-apea/search', 'ControloApeaController@search');
 //LME BOARD
 Route::get('lme-board', 'LmeBoardController@index');
 
+//Export
+Route::get('relatorio', 'RelatorioController@index');
+Route::get('relatorio/export', [RelatorioController::class, 'export']);
