@@ -77,7 +77,7 @@ class TarifaController extends Controller
 
         $tarifa->save();
 
-        return redirect('tarifas')->with('status','Editado');
+        return redirect('lme-board')->with('status','Editado');
     }
 
     /**
