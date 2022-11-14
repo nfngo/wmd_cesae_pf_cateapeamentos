@@ -50,6 +50,9 @@ class LmeController extends Controller
     {
         $this->validate($request, [
             'data' => 'required',
+            'usd_ton_cobre' => 'required',
+            'usd_ton_chumbo' => 'required',
+            'rate_usd_euro' => 'required'
             ]);
 
         Lme::create($request->all());
@@ -96,6 +99,16 @@ class LmeController extends Controller
 
         $lme->id = $request->id;
         $lme->data = $request->data;
+        //$lme->id = DB::raw("SELECT MONTH(data) from lmes").DB::raw("SELECT YEAR(data) from lmes");
+        $lme->usd_ton_cobre;
+        $lme->usd_ton_chumbo;
+        $lme->rate_usd_euro;
+
+
+        if ( $lme->usd_ton_cobre != null &&
+             $lme->usd_ton_chumbo != null &&
+             $lme->rate_usd_euro != null ) {
+
         $lme->usd_ton_cobre = $request-> usd_ton_cobre;
         $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
         $lme->rate_usd_euro = $request->rate_usd_euro;
@@ -103,15 +116,13 @@ class LmeController extends Controller
         $lme->preco_venda_plastico = ($plastico->perc_lme_cobre*0.01)*($lme->lme_cobre_kg_plastico*($plastico->perc_peso_cobre*0.01))
                                     +($plastico->perc_lme_chumbo*0.01)*($lme->lme_chumbo_kg_plastico*($plastico->perc_peso_chumbo*0.01));
 
-                                    dd(($plastico->perc_lme_cobre*0.01)*($lme->lme_cobre_kg_plastico*($plastico->perc_peso_cobre*0.01)));
-
 
         $lme->preco_metal_kg_cabo_plastico = $lme->lme_cobre_kg_plastico*($plastico->perc_peso_cobre*0.01)
                                             +($lme->lme_chumbo_kg_plastico*($plastico->perc_peso_chumbo*0.01));
 
-        $lme->lme_cobre_kg_plastico = $lme->usd_ton_cobre/1000/$lme->rate_usd_euro;
+        $lme->lme_cobre_kg_plastico = ($lme->usd_ton_cobre/1000)/$lme->rate_usd_euro;
 
-        $lme->lme_chumbo_kg_plastico = $lme->usd_ton_chumbo/1000/$lme->rate_usd_euro;
+        $lme->lme_chumbo_kg_plastico = ($lme->usd_ton_chumbo/1000)/$lme->rate_usd_euro;
 
         $lme->preco_venda_chumbo = ($chumbo->perc_lme_cobre*0.01)*($lme->lme_cobre_kg_chumbo*($chumbo->perc_peso_cobre*0.01))
                                     +($chumbo->perc_lme_chumbo*0.01)*($lme->lme_chumbo_kg_chumbo*($chumbo->perc_peso_chumbo*0.01));
@@ -120,14 +131,90 @@ class LmeController extends Controller
         $lme->preco_metal_kg_cabo_chumbo = $lme->lme_cobre_kg_chumbo*($chumbo->perc_peso_cobre*0.01)
                                             +($lme->lme_chumbo_kg_chumbo*($chumbo->perc_peso_chumbo*0.01));
 
-        $lme->lme_cobre_kg_chumbo = $lme->usd_ton_cobre/1000/$lme->rate_usd_euro;
+        $lme->lme_cobre_kg_chumbo = $lme->lme_cobre_kg_plastico;
 
-        $lme->lme_chumbo_kg_chumbo = $lme->usd_ton_chumbo/1000/$lme->rate_usd_euro;
+        $lme->lme_chumbo_kg_chumbo = ($lme->usd_ton_chumbo/1000)/$lme->rate_usd_euro;
         
         $lme->custo_mix = $lme->preco_venda_plastico*($plastico->perc_mix_cabo*0.01)+($lme->preco_venda_chumbo*($chumbo->perc_mix_cabo*0.01));
+        
+        $lme->custo_venda = ($lme->custo_mix-($tarifa->custo_retirada))-($tarifa->custo_operacao);
 
-        $lme->custo_venda = $lme->custo_mix-($tarifa->custo_retirada)-($tarifa->custo_operacao);
+             }
+        else {
+            if ( $lme->usd_ton_cobre == null &&
+                $lme->usd_ton_chumbo != null &&
+                $lme->rate_usd_euro != null ) {
 
+                $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
+                $lme->rate_usd_euro = $request->rate_usd_euro;
+
+                $lme->preco_venda_plastico = null;  
+                $lme->preco_metal_kg_cabo_plastico = null;
+                $lme->lme_cobre_kg_plastico = null;
+                $lme->lme_chumbo_kg_plastico = null;
+                $lme->preco_venda_chumbo = null;
+                $lme->preco_metal_kg_cabo_chumbo = null;
+                $lme->lme_cobre_kg_chumbo = null;
+                $lme->lme_chumbo_kg_chumbo =  null;             
+                $lme->custo_mix = null;
+                $lme->custo_venda = null;
+
+                }
+            if ( $lme->usd_ton_cobre == null &&
+                $lme->usd_ton_chumbo == null &&
+                $lme->rate_usd_euro != null ) {
+
+                $lme->rate_usd_euro = $request->rate_usd_euro;
+
+                $lme->preco_venda_plastico = null;  
+                $lme->preco_metal_kg_cabo_plastico = null;
+                $lme->lme_cobre_kg_plastico = null;
+                $lme->lme_chumbo_kg_plastico = null;
+                $lme->preco_venda_chumbo = null;
+                $lme->preco_metal_kg_cabo_chumbo = null;
+                $lme->lme_cobre_kg_chumbo = null;
+                $lme->lme_chumbo_kg_chumbo =  null;             
+                $lme->custo_mix = null;
+                $lme->custo_venda = null;
+
+                }
+            if ( $lme->usd_ton_cobre != null &&
+                $lme->usd_ton_chumbo == null &&
+                $lme->rate_usd_euro == null ) {
+
+                $lme->usd_ton_cobre = $request->usd_ton_cobre;
+
+                $lme->preco_venda_plastico = null;  
+                $lme->preco_metal_kg_cabo_plastico = null;
+                $lme->lme_cobre_kg_plastico = null;
+                $lme->lme_chumbo_kg_plastico = null;
+                $lme->preco_venda_chumbo = null;
+                $lme->preco_metal_kg_cabo_chumbo = null;
+                $lme->lme_cobre_kg_chumbo = null;
+                $lme->lme_chumbo_kg_chumbo =  null;             
+                $lme->custo_mix = null;
+                $lme->custo_venda = null;
+
+                }
+            if ( $lme->usd_ton_cobre == null &&
+                $lme->usd_ton_chumbo != null &&
+                $lme->rate_usd_euro == null ) {
+
+                $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
+
+                $lme->preco_venda_plastico = null;  
+                $lme->preco_metal_kg_cabo_plastico = null;
+                $lme->lme_cobre_kg_plastico = null;
+                $lme->lme_chumbo_kg_plastico = null;
+                $lme->preco_venda_chumbo = null;
+                $lme->preco_metal_kg_cabo_chumbo = null;
+                $lme->lme_cobre_kg_chumbo = null;
+                $lme->lme_chumbo_kg_chumbo =  null;             
+                $lme->custo_mix = null;
+                $lme->custo_venda = null;
+
+                }
+        }
 
         $lme->save();
 
