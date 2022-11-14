@@ -13,6 +13,8 @@ const cardSwapBtn = document.getElementById('cardSwapBtn');
 const plasticoContainer = document.getElementById('PlásticoContainer');
 const chumboContainer = document.getElementById('ChumboContainer');
 
+const editForm = document.getElementById('editForm');
+
 tarifasBtn.addEventListener('click', (e) => {
     e.preventDefault();
     tarifasStatic.style.opacity = '0';
@@ -86,3 +88,10 @@ cardSwapBtn.addEventListener('click', (e) => {
         opacity = '1';
     }
 })
+
+const populateEditForm = (item) => {
+    editForm.action = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/lme/${item.id}`;
+    document.getElementById('usd_ton_cobre').value = item.usd_ton_cobre;
+    document.getElementById('usd_ton_chumbo').value = item.usd_ton_chumbo;
+    document.getElementById('rate_usd_euro').value = item.rate_usd_euro;
+};

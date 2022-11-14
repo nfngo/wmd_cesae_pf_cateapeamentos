@@ -18,43 +18,41 @@
                                 placeholder="18APEAP_CU066363">
                         </div>
                     </div>
-                            <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label class="mb-1" for="apea_id">Material ID</label>
-                                    <input
-                                        type="text"
-                                        class="form-control input-custom"
-                                        id="material_id"
-                                        name="material_id"
-                                        @if(Request::get('material_id'))
-                                            value="{{ Request::get('material_id') }}"
-                                        @endif
-                                        placeholder="1700005917">
-                                </div>
-                            </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-group">
-                                        <label class="mb-1" for="data">Data</label>
-                                        <input
-                                            type="text"
-                                            class="form-control input-custom"
-                                            id="data"
-                                            name="data"
-                                            @if(Request::get('data'))
-                                                value="{{ Request::get('data') }}"
-                                            @endif
-                                            placeholder="aaaa ou mm ou aaaa-mm">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-md-2 mt-2 d-flex align-items-end">
-                                <button class="btn btn-filled w-100" type="submit">Procurar</button>
-                            </div>
-
-
-                </form>
-
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label class="mb-1" for="apea_id">Material ID</label>
+                            <input
+                                type="text"
+                                class="form-control input-custom"
+                                id="material_id"
+                                name="material_id"
+                                @if(Request::get('material_id'))
+                                    value="{{ Request::get('material_id') }}"
+                                @endif
+                                placeholder="1700005917">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label class="mb-1" for="data">Data</label>
+                            <input
+                                type="text"
+                                class="form-control input-custom"
+                                id="data"
+                                name="data"
+                                @if(Request::get('data'))
+                                    value="{{ Request::get('data') }}"
+                                @endif
+                                placeholder="aaaa ou mm ou aaaa-mm">
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end mt-3">
+                    <div class="col-12 col-md-2 d-flex align-items-end">
+                        <button class="btn btn-filled w-100" type="submit">Procurar</button>
+                    </div>
+                </div>
+            </form>
 
 
             <div class="card border-0 shadow-lg mt-5">
@@ -63,49 +61,49 @@
                         <p> Não existem dados</p>
                     @else
 
-                    <table id="controloApea" class="table">
-                        <thead>
-                        <tr class="bg-light-blue text-white bt-0">
+                        <table id="controloApea" class="table">
+                            <thead>
+                            <tr class="bg-light-blue text-white bt-0">
 
-                            <th scope="col">@sortablelink('apea_id', 'Codigo Nemesis Apeamento')</th>
-                            <th scope="col">@sortablelink('material_id', 'Material ID')</th>
-                            <th scope="col">Codigo Centro Lucro</th>
-                            <th scope="col">Descrição Centro Lucro</th>
-                            <th scope="col">GECA Serviço</th>
-                            <th scope="col">GECA Requisição</th>
-                            <th scope="col">CCO</th>
-                            <th scope="col">@sortablelink('data', 'Data')</th>
-                            <th scope="col">Material Descrição</th>
-                            <th scope="col">Comprimento Projecto</th>
-                            <th scope="col">Tipo Consumo Projecto</th>
-                            <th scope="col">Comprimento Real</th>
-                            <th scope="col">Tipo Consumo Real</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($control_apea as $item)
-                            <tr>
-                                <td>{{ $item->apea_id }}</td>
-                                <td>{{ $item->material_id }}</td>
-                                <td>{{ $item->cod_centro_lucro }}</td>
-                                <td>{{ $item->desc_centro_lucro}}</td>
-                                <td>{{ $item->geca_servico }}</td>
-                                <td>{{ $item->geca_requisicao}}</td>
-                                <td>{{ $item->cco}}</td>
-                                <td>{{ $item->data}}</td>
-                                <td>{{ $item->material_descricao }}</td>
-                                <td>{{ $item->comprimento_proj}}</td>
-                                <td>{{ $item->tipo_consumo_proj}}</td>
-                                <td>{{ $item->comprimento_real}}</td>
-                                <td>{{ $item->tipo_consumo_real}}</td>
+                                <th scope="col">@sortablelink('apea_id', 'Codigo Nemesis Apeamento')</th>
+                                <th scope="col">@sortablelink('material_id', 'Material ID')</th>
+                                <th scope="col">Codigo Centro Lucro</th>
+                                <th scope="col">Descrição Centro Lucro</th>
+                                <th scope="col">GECA Serviço</th>
+                                <th scope="col">GECA Requisição</th>
+                                <th scope="col">CCO</th>
+                                <th scope="col">@sortablelink('data', 'Data')</th>
+                                <th scope="col">Material Descrição</th>
+                                <th scope="col">Comprimento Projecto</th>
+                                <th scope="col">Tipo Consumo Projecto</th>
+                                <th scope="col">Comprimento Real</th>
+                                <th scope="col">Tipo Consumo Real</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($control_apea as $item)
+                                <tr>
+                                    <td>{{ $item->apea_id }}</td>
+                                    <td>{{ $item->material_id }}</td>
+                                    <td>{{ $item->cod_centro_lucro }}</td>
+                                    <td>{{ $item->desc_centro_lucro}}</td>
+                                    <td>{{ $item->geca_servico }}</td>
+                                    <td>{{ $item->geca_requisicao}}</td>
+                                    <td>{{ $item->cco}}</td>
+                                    <td>{{ $item->data}}</td>
+                                    <td>{{ $item->material_descricao }}</td>
+                                    <td>{{ $item->comprimento_proj}}</td>
+                                    <td>{{ $item->tipo_consumo_proj}}</td>
+                                    <td>{{ $item->comprimento_real}}</td>
+                                    <td>{{ $item->tipo_consumo_real}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     @endif
-            </div>
+                </div>
                 {!! $control_apea->appends(\Request::except('page'))->render() !!}
-        </div>
+            </div>
         </div>
     </div>
 

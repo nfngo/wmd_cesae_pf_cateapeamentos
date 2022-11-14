@@ -137,7 +137,9 @@ a:hover {
 }
 
 .card-icon {
-    height: 150px;
+    max-width: 75%;
+    height: auto;
+    max-height: 150px;
 }
 
 table {
@@ -324,6 +326,16 @@ nav ul li a {
     border-left: 1px solid lightsteelblue;
 }
 
+/* ---------------------------------- RELATORIO-CONTROLO-LIST VIEW ---------------------------------- */
+
+th a {
+    color: inherit;
+}
+
+th a:hover {
+    color: inherit;
+}
+
 /* ---------------------------------- TARIFAS AND CABO EDIT VIEWS ---------------------------------- */
 
 .tarifas-card-content {
@@ -378,15 +390,20 @@ nav ul li a {
     z-index: 2;
 }
 
+.lme-add-btn {
+    right: 1.5rem;
+    top: 1rem;
+}
+
 #PlásticoContainer {
     opacity: 1;
     z-index: 1;
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 #ChumboContainer {
     opacity: 0;
     z-index: -1;
     transform: translateX(100%);
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
