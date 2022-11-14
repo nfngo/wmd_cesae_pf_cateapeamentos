@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <div class="row">
+        <div class="row lme-cards-container">
             <div class="col-12 col-md-4">
                 @component('components.tarifas.edit', ['tarifa' => $tarifa])
                 @endcomponent
@@ -54,7 +54,7 @@
                             @method('PUT')
                             <input id="lme_item_id" name="id" type="hidden" value="">
                             <div class="form-group mb-2">
-                                <label class="fw-semibold mb-1" for="usd_ton_cobre">Data</label>
+                                <label class="fw-semibold mb-1" for="data">Data</label>
                                 <input
                                     type="date"
                                     id="data"
@@ -108,6 +108,7 @@
                 </div>
             </div>
         </div>
+
         <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -119,14 +120,15 @@
                         <form id="createForm" class="card-form" action="{{ url('lme') }}" method="POST">
                             @csrf
                             <div class="form-group mb-2">
-                                <label class="fw-semibold mb-1" for="usd_ton_cobre">Data</label>
+                                <label class="fw-semibold mb-1" for="new_data">Data</label>
                                 <input
                                     type="date"
-                                    id="data"
-                                    name="data"
+                                    id="new_data"
+                                    name="new_data"
                                     class="form-control input-custom
                                     @error('data') is-invalid @enderror"
                                     value=""
+                                    min="{{\Carbon\Carbon::now()->format('Y-m-d')}}"
                                     required>
                             </div>
                             <div class="form-group mb-2">

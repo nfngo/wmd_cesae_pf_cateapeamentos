@@ -36,17 +36,20 @@
                                 <td>{{ $item->usd_ton_chumbo }}</td>
                                 <td>{{ $item->rate_usd_euro }}</td>
                                 <td>{{ $item->custo_mix }}€</td>
-                                <td class="d-flex align-items-center justify-content-between">
-                                    {{ $item->custo_venda }}€
-                                    @if($loop->first)
-                                        <button type="button" class="position-absolute btn btn-filled lme-edit-btn" data-bs-toggle="modal"
-                                                data-bs-target="#editModal" data-toggle="tooltip" title="Editar último mês"
-                                                onclick="populateEditForm({{json_encode($item)}})">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                    @endif
-                                </td>
+                                <td>{{ $item->custo_venda }}€</td>
                             </tr>
+                            @if($loop->first)
+                                <button type="button" class="position-absolute btn btn-filled lme-edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#editModal" data-toggle="tooltip" title="Editar último mês"
+                                        onclick="populateEditForm({{json_encode($item)}})">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <form class="d-inline" action="{{url('lme/' . $item->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="position-absolute btn btn-filled lme-delete-btn"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
