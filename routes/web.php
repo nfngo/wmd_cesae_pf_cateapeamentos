@@ -33,7 +33,7 @@ Route::get('lme', 'LmeController@index');
 Route::get('lme/{lme}/edit', 'LmeController@edit');
 Route::put('lme/{lme}', 'LmeController@update');
 Route::get('lme/create', 'LmeController@create');
-Route::post('lme/create', 'LmeController@store');
+Route::post('lme', 'LmeController@store');
 
 // Cabos
 Route::get('cabos','CaboController@index');
