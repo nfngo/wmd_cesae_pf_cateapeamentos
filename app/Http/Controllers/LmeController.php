@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use DB;
 
 use App\Lme;
+use App\Tarifa;
+use App\Cabo;
 use Illuminate\Http\Request;
 
 class LmeController extends Controller
@@ -15,7 +18,16 @@ class LmeController extends Controller
     public function index()
     {
         $lme = Lme::paginate(12);
-        return view('pages.lme.index', ['lme' => $lme]);
+        $tarifa = Tarifa::all();
+
+        $plastico = DB::table('cabos')
+            ->select('perc_lme_cobre','perc_lme_chumbo','perc_peso_cobre','perc:peso_chumbo')
+            ->where('id', 1);
+        $chumbo = DB::table('cabos')
+            ->select('perc_lme_cobre','perc_lme_chumbo','perc_peso_cobre','perc:peso_chumbo')
+            ->where('id', 2);
+
+        return view('pages.lme.index', ['lme' => $lme,'plastico' => $plastico, 'chumbo' => $chumbo, 'tarifa' => $tarifa ]);
     }
 
     /**
@@ -25,7 +37,7 @@ class LmeController extends Controller
      */
     public function create()
     {
-        return view('pages.lme.lme-create');
+        return view('pages.lme.create');
     }
 
     /**
@@ -77,20 +89,45 @@ class LmeController extends Controller
     {
         $lme = Lme::find($lme->id);
 
+        $plastico = Cabo::find(1);
+        $chumbo = Cabo::find(2);
+
+        $tarifa = Tarifa::find(1);
+
+        $lme->id = $request->id;
         $lme->data = $request->data;
         $lme->usd_ton_cobre = $request-> usd_ton_cobre;
         $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
         $lme->rate_usd_euro = $request->rate_usd_euro;
-        $lme->preco_venda_plastico = $request->preco_venda_plastico;
-        $lme->preco_metal_kg_cabo_plastico = $request->preco_metal_kg_cabo_plastico;
-        $lme->lme_cobre_kg_plastico = $request->lme_cobre_kg_plastico;
-        $lme->lme_chumbo_kg_plastico = $request->lme_chumbo_kg_plastico;
-        $lme->preco_venda_chumbo = $request->preco_venda_chumbo;
-        $lme->preco_metal_kg_cabo_chumbo = $request->preco_metal_kg_cabo_chumbo;
-        $lme->lme_cobre_kg_chumbo = $request->lme_cobre_kg_chumbo;
-        $lme->lme_chumbo_kg_chumbo = $request->lme_chumbo_kg_chumbo;
-        $lme->custo_mix = $request->custo_mix;
-        $lme->custo_venda = $request->custo_venda;
+
+        $lme->preco_venda_plastico = ($plastico->perc_lme_cobre*0.01)*($lme->lme_cobre_kg_plastico*($plastico->perc_peso_cobre*0.01))
+                                    +($plastico->perc_lme_chumbo*0.01)*($lme->lme_chumbo_kg_plastico*($plastico->perc_peso_chumbo*0.01));
+
+                                    dd(($plastico->perc_lme_cobre*0.01)*($lme->lme_cobre_kg_plastico*($plastico->perc_peso_cobre*0.01)));
+
+
+        $lme->preco_metal_kg_cabo_plastico = $lme->lme_cobre_kg_plastico*($plastico->perc_peso_cobre*0.01)
+                                            +($lme->lme_chumbo_kg_plastico*($plastico->perc_peso_chumbo*0.01));
+
+        $lme->lme_cobre_kg_plastico = $lme->usd_ton_cobre/1000/$lme->rate_usd_euro;
+
+        $lme->lme_chumbo_kg_plastico = $lme->usd_ton_chumbo/1000/$lme->rate_usd_euro;
+
+        $lme->preco_venda_chumbo = ($chumbo->perc_lme_cobre*0.01)*($lme->lme_cobre_kg_chumbo*($chumbo->perc_peso_cobre*0.01))
+                                    +($chumbo->perc_lme_chumbo*0.01)*($lme->lme_chumbo_kg_chumbo*($chumbo->perc_peso_chumbo*0.01));
+                
+
+        $lme->preco_metal_kg_cabo_chumbo = $lme->lme_cobre_kg_chumbo*($chumbo->perc_peso_cobre*0.01)
+                                            +($lme->lme_chumbo_kg_chumbo*($chumbo->perc_peso_chumbo*0.01));
+
+        $lme->lme_cobre_kg_chumbo = $lme->usd_ton_cobre/1000/$lme->rate_usd_euro;
+
+        $lme->lme_chumbo_kg_chumbo = $lme->usd_ton_chumbo/1000/$lme->rate_usd_euro;
+        
+        $lme->custo_mix = $lme->preco_venda_plastico*($plastico->perc_mix_cabo*0.01)+($lme->preco_venda_chumbo*($chumbo->perc_mix_cabo*0.01));
+
+        $lme->custo_venda = $lme->custo_mix-($tarifa->custo_retirada)-($tarifa->custo_operacao);
+
 
         $lme->save();
 
