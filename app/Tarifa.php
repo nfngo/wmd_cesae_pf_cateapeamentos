@@ -8,6 +8,6 @@ class Tarifa extends Model
 {
     protected $fillable = [
         'custo_retirada',
-         'custo_operacao',
+        'custo_operacao',
      ];
 }

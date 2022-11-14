@@ -136,6 +136,10 @@ a:hover {
     border-radius: 20px;
 }
 
+.card-icon {
+    height: 150px;
+}
+
 table {
     font-size: 0.75rem;
 }
@@ -313,7 +317,76 @@ nav ul li a {
     border-radius: 20px;
 }
 
+/* ---------------------------------- ESTADOS-LIST VIEW ---------------------------------- */
+
 #controloEstados tr:first-child th:not(:first-child):not(:last-child) {
     border-right: 1px solid lightsteelblue;
     border-left: 1px solid lightsteelblue;
+}
+
+/* ---------------------------------- TARIFAS AND CABO EDIT VIEWS ---------------------------------- */
+
+.tarifas-card-content {
+    overflow: hidden;
+    max-height: 240px;
+}
+
+.tarifas-card-content .card-form {
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-in-out;
+}
+
+.tarifas-card-content .card-static {
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-in-out;
+}
+
+.cabo-card-content {
+    overflow: hidden;
+    max-height: 320px;
+}
+
+.cabo-card-content .card-static {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.cabo-card-content .card-form {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.card-btn-swap {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    z-index: 1;
+}
+
+.hide-links {
+    opacity: 0;
+    z-index: -2;
+}
+
+#lmeContainer {
+    z-index: 2;
+}
+
+#PlásticoContainer {
+    opacity: 1;
+    z-index: 1;
+    transition: all 1s ease-in-out;
+}
+
+#ChumboContainer {
+    opacity: 0;
+    z-index: -1;
+    transform: translateX(100%);
+    transition: all 1s ease-in-out;
 }

@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @if(Request::is('lme-board'))
+        <script src="{{ asset('js/lme-board.js') }}" defer></script>
+    @endif
     @yield('scripts')
 
     <!-- Fonts -->

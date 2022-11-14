@@ -14,7 +14,7 @@ class TarifaController extends Controller
      */
     public function index()
     {
-        $tarifa = Tarifa::paginate(12);
+        $tarifa = Tarifa::find(1);
         return view('pages.tarifas.index', ['tarifa' => $tarifa]);
     }
     /**
@@ -41,7 +41,7 @@ class TarifaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Lme  
+     * @param  \App\Lme
      * @return \Illuminate\Http\Response
      */
     public function show(Tarifa $tarifa)
@@ -52,7 +52,7 @@ class TarifaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Material  
+     * @param  \App\Material
      * @return \Illuminate\Http\Response
      */
     public function edit(Tarifa $tarifa)
@@ -64,26 +64,25 @@ class TarifaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Material  
+     * @param  \App\Material
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Tarifa $tarifa)
     {
         $tarifa = Tarifa::find($tarifa->id);
 
-
         $tarifa->custo_retirada = $request->custo_retirada;
         $tarifa->custo_operacao = $request->custo_operacao;
 
         $tarifa->save();
 
-        return redirect('lme-board')->with('status','Editado');
+        return redirect('lme-board')->with('status','Tarifa editada com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Lme  
+     * @param  \App\Lme
      * @return \Illuminate\Http\Lme
      */
     public function destroy(Tarifa $tarifa)
