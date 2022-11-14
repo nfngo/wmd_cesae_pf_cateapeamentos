@@ -21,11 +21,15 @@ class LmeBoardController extends Controller
 
         $plastico = DB::table('lmes')
             ->select('id', DB::raw('preco_venda_plastico as preco_venda'), DB::raw('preco_metal_kg_cabo_plastico as preco_metal_kg_cabo'),
-                DB::raw('lme_cobre_kg_plastico as lme_cobre_kg'), DB::raw('lme_chumbo_kg_plastico as lme_chumbo_kg'))->paginate(10);
+                DB::raw('lme_cobre_kg_plastico as lme_cobre_kg'), DB::raw('lme_chumbo_kg_plastico as lme_chumbo_kg'))
+            ->orderBy('data', 'desc')
+            ->paginate(10);
 
         $chumbo = DB::table('lmes')
             ->select('id', DB::raw('preco_venda_chumbo as preco_venda'), DB::raw('preco_metal_kg_cabo_chumbo as preco_metal_kg_cabo'),
-                DB::raw('lme_cobre_kg_chumbo as lme_cobre_kg'), DB::raw('lme_chumbo_kg_chumbo as lme_chumbo_kg'))->paginate(10);
+                DB::raw('lme_cobre_kg_chumbo as lme_cobre_kg'), DB::raw('lme_chumbo_kg_chumbo as lme_chumbo_kg'))
+            ->orderBy('data', 'desc')
+            ->paginate(10);
 
         $materiais = [$plastico, $chumbo];
 

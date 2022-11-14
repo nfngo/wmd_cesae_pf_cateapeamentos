@@ -1,26 +1,27 @@
 <div class="row">
     <div class="col-12">
         <div class="card border-0">
-            <div class="row">
-                <div class="col-12 col-sm-3">
+            <div class="row position-relative">
+                <div class="col-12">
                     <p class="text-color-secondary-header m-3 fs-4 fw-semibold">LME</p>
                 </div>
-                <div class="col-12 col-sm-9 d-flex justify-content-end">
-                    <a href="#" class="m-3 btn btn-filled"><span>+</span></a>
-                </div>
+                <button type="button" class="position-absolute btn btn-filled lme-add-btn" data-bs-toggle="modal"
+                        data-bs-target="#createModal">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <div class="mb-3" style="overflow-x: scroll">
+            <div class="mb-3 overflow-hidden">
                 @if($lme->count() == 0)
                     <p>Não existem dados</p>
                 @else
                     <table class="table">
                         <thead>
                         <tr class="bg-light-blue text-white bt-0">
-{{--                            <th class="rounded-0" scope="col">Id</th>--}}
+                            {{--                            <th class="rounded-0" scope="col">Id</th>--}}
                             <th class="rounded-0" scope="col">Mês</th>
-                            <th scope="col">USD/Ton Cobre</th>
-                            <th scope="col">USD/Ton Chumbo</th>
-                            <th scope="col">Exchange rate USD/€</th>
+                            <th scope="col">USD / Ton Cobre</th>
+                            <th scope="col">USD / Ton Chumbo</th>
+                            <th scope="col">Exchange rate USD / €</th>
                             <th scope="col">Custo MIX</th>
                             <th class="rounded-0" scope="col">Custo de Venda</th>
                         </tr>
@@ -28,7 +29,6 @@
                         <tbody>
                         @foreach($lme as $item)
                             <tr>
-{{--                                <td>{{ $item->id }}</td>--}}
                                 <td>
                                     {{\Carbon\Carbon::parse($item->data)->format('M/Y')}}
                                 </td>
@@ -38,6 +38,18 @@
                                 <td>{{ $item->custo_mix }}€</td>
                                 <td>{{ $item->custo_venda }}€</td>
                             </tr>
+                            @if($loop->first)
+                                <button type="button" class="position-absolute btn btn-filled lme-edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#editModal" data-toggle="tooltip" title="Editar último mês"
+                                        onclick="populateEditForm({{json_encode($item)}})">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <form class="d-inline" action="{{url('lme/' . $item->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="position-absolute btn btn-filled lme-delete-btn"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>

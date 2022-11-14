@@ -2,23 +2,23 @@
     <div class="row cabo-card-content">
         <div id="caboStatic_{{$cabo->id}}" class="card-static row m-0 p-0">
             <p class="text-color-secondary-header m-0 fs-4 fw-semibold">{{ucfirst($cabo->material)}}</p>
-            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+            <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% no Mix de cabo</span>
                 <span class="fs-3 text-color-light-blue">{{$cabo->perc_mix_cabo}}%</span>
             </div>
-            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+            <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% LME Cobre</span>
                 <span class="fs-3 text-color-light-blue">{{$cabo->perc_lme_cobre}}%</span>
             </div>
-            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+            <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% LME Chumbo</span>
                 <span class="fs-3 text-color-light-blue">{{$cabo->perc_lme_chumbo}}%</span>
             </div>
-            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+            <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% Peso Cabo em cobre</span>
                 <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_cobre}}%</span>
             </div>
-            <div class="col-12 col-sm-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
+            <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% Peso Cabo em chumbo</span>
                 <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_chumbo}}%</span>
             </div>
@@ -31,7 +31,7 @@
             @method('PUT')
             <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Editar {{ucfirst($cabo->material)}}</p>
             <div class="row">
-                <div class="form-group mb-2 col-12 col-sm-6">
+                <div class="form-group mb-2 col-6 col-md-12 col-xl-6">
                     <label class="fw-semibold" for="perc_mix_cabo">% no Mix de cabo</label>
                     <input type="number"
                            id="perc_mix_cabo"
@@ -44,7 +44,7 @@
                            step="0.1"
                            required>
                 </div>
-                <div class="form-group mb-2 col-12 col-sm-6">
+                <div class="form-group mb-2 col-6 col-md-12 col-xl-6">
                     <label class="fw-semibold" for="perc_lme_cobre">% LME Cobre</label>
                     <input type="number"
                            id="perc_lme_cobre"
@@ -60,7 +60,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group mb-2 col-12 col-sm-6">
+                <div class="form-group mb-2 col-6 col-md-12 col-xl-6">
                     <label class="fw-semibold" for="perc_lme_chumbo">% LME Chumbo</label>
                     <input type="number"
                            id="perc_lme_chumbo"
@@ -73,7 +73,7 @@
                            step="0.1"
                            required>
                 </div>
-                <div class="form-group mb-2 col-12 col-sm-6">
+                <div class="form-group mb-2 col-6 col-md-12 col-xl-6">
                     <label class="fw-semibold" for="perc_peso_cobre">% Peso Cabo em Cobre</label>
                     <input type="number"
                            id="perc_peso_cobre"
@@ -89,7 +89,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-12 col-sm-6">
+                <div class="form-group col-6 col-md-12 col-xl-6">
                     <label class="fw-semibold" for="perc_peso_chumbo">% Peso Cabo em Chumbo</label>
                     <input type="number"
                            id="perc_peso_chumbo"
