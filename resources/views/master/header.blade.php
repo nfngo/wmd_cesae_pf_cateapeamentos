@@ -49,6 +49,9 @@
                 <li @if(Request::is('lme-board')) class="active" @endif>
                     <a href="{{url('lme-board')}}">LME</a>
                 </li>
+                <li @if(Request::is('relatorio')) class="active" @endif>
+                    <a href="{{url('relatorio')}}">Relatório Financeiro</a>
+                </li>
             </ul>
         </div>
     </div>

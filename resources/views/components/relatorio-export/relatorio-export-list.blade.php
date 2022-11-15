@@ -1,11 +1,16 @@
 <div class="w-100 p-4 mt-5">
     <div class="row">
         <div class="col-12">
-            <p class="my-4 text-uppercase fs-5">Exportar</p>
-            <div class="col-12 col-md-2 mt-2 d-flex align-items-end">
-                <a href="{{url('relatorio/export')}}" class="btn btn-filled w-100">Exportar</a>
+            <p class="my-4 text-uppercase fs-5">Relatório Financeiro</p>
+            <div class="row justify-content-end">
+                <div class="col-12 col-md-2 mt-2 d-flex align-items-end">
+                    <a href="{{url('relatorio/export')}}" class="btn btn-filled w-100">
+                        <i class="fa-solid fa-download mx-2"></i>
+                        Exportar</a>
+                </div>
             </div>
-            <div class="card border-0 shadow-lg mt-5">
+
+            <div class="card border-0 shadow-lg mt-4">
                 <div class="" style="overflow-x: scroll">
 
                         <table id="dadosRelatorio" class="table">

@@ -18,7 +18,7 @@ class ControloApeaController extends Controller
     public function index(){
 
 
-        $control_apea = ControloApea::sortable()->paginate(12);
+        $control_apea = ControloApea::sortable()->paginate(12)->onEachSide(1);
 
         return view('pages.relatorio-controlo.index', ['control_apea'=>$control_apea]);
     }
@@ -109,6 +109,7 @@ class ControloApeaController extends Controller
             ->whereDate('controlo_apeas.data', 'like', '%' .$data.'%')
             ->sortable()
             ->paginate(12)
+            ->onEachSide(1)
             ->appends(['apea_id' => $apea_id, 'data'=>$data, 'material_id'=>$material_id]);
 
            return view('pages.relatorio-controlo.index', ['control_apea'=>$control_apea]);

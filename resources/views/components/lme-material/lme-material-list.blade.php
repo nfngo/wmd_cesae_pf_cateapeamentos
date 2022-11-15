@@ -15,8 +15,6 @@
                         <tr class="bg-light-blue text-white bt-0">
                             <th class="rounded-0" scope="col">Valor de Venda</th>
                             <th scope="col">Valor do metal por Kg de cabo</th>
-                            <th scope="col">LME Cobre / Kg</th>
-                            <th class="rounded-0" scope="col">LME Chumbo / Kg</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -24,8 +22,6 @@
                             <tr>
                                 <td>{{ $item->preco_venda }}€</td>
                                 <td>{{ $item->preco_metal_kg_cabo }}€</td>
-                                <td>{{ $item->lme_cobre_kg }}€</td>
-                                <td>{{ $item->lme_chumbo_kg }}€</td>
                             </tr>
                         @endforeach
                         </tbody>

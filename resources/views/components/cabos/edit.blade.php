@@ -26,7 +26,7 @@
                 <button id="caboEditBtn_{{$cabo->id}}" class="btn btn-sm btn-inverted">Editar</button>
             </div>
         </div>
-        <form id="caboForm_{{$cabo->id}}" class="card-form" action="{{url('cabo/'.$cabo->id)}}" method="POST">
+        <form id="caboForm_{{$cabo->id}}" class="card-form" action="{{url('cabos/'.$cabo->id)}}" method="POST">
             @csrf
             @method('PUT')
             <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Editar {{ucfirst($cabo->material)}}</p>

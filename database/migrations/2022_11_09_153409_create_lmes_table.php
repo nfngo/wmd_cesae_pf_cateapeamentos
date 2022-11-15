@@ -18,15 +18,13 @@ class CreateLmesTable extends Migration
             $table->date('data');
             $table->decimal('usd_ton_cobre')->nullable();
             $table->decimal('usd_ton_chumbo')->nullable();
-            $table->decimal('rate_usd_euro')->nullable();
+            $table->decimal('rate_usd_euro', 10,4)->nullable();
             $table->decimal('preco_venda_plastico')->nullable();
             $table->decimal('preco_metal_kg_cabo_plastico')->nullable();
-            $table->decimal('lme_cobre_kg_plastico')->nullable();
-            $table->decimal('lme_chumbo_kg_plastico')->nullable();
+            $table->decimal('lme_cobre_kg')->nullable();
+            $table->decimal('lme_chumbo_kg')->nullable();
             $table->decimal('preco_venda_chumbo')->nullable();
             $table->decimal('preco_metal_kg_cabo_chumbo')->nullable();
-            $table->decimal('lme_cobre_kg_chumbo')->nullable();
-            $table->decimal('lme_chumbo_kg_chumbo')->nullable();
             $table->decimal('custo_mix')->nullable();
             $table->decimal('custo_venda')->nullable();
             $table->timestamps();
