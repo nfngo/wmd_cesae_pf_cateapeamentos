@@ -101,7 +101,6 @@ class ApeaController extends Controller
 
     public function updateFaturado(Request $request, $id)
     {
-
         $apea = Apea::findOrFail($id);
 
         if($apea->faturado == 0) {
@@ -112,10 +111,7 @@ class ApeaController extends Controller
 
         $apea->save();
 
-        $message = 'Apeamento ' . $apea->id . ' atualizado com sucesso.';
-
-        return redirect('estados')->with('status', $message);
-
+        return redirect()->back();
     }
 
     /**

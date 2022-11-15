@@ -57,8 +57,7 @@ class LmeController extends Controller
             'data' => 'required'
         ]);
 
-
-
+        dd($request);
 
         if ($lme->usd_ton_cobre != "" && $lme->usd_ton_chumbo != "" && $lme->rate_usd_euro != "") {
 
@@ -124,6 +123,8 @@ class LmeController extends Controller
                 $lme->custo_mix = $lastLme->custo_mix;
                 $lme->custo_venda = $lastLme->custo_venda;
            }
+
+
 
         //Lme::create($request->all());
         return redirect('lme-board')->with('status', 'Item created successfully!');

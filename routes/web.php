@@ -54,7 +54,6 @@ Route::put('tarifa/{tarifa}', 'TarifaController@update');
 Route::get('control-apea', 'ControloApeaController@index');
 Route::get('control-apea/search', 'ControloApeaController@search');
 
-
 //LME BOARD
 Route::get('lme-board', 'LmeBoardController@index');
 

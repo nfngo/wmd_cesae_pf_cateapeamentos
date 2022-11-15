@@ -378,7 +378,7 @@
                                                   action="{{ route('updateFaturado', $project->apea_id) }}">
                                                 @csrf
                                                 <input hidden name="id" value="$project->apea_id"></input>
-                                                <button type="submit" class="border-0 bg-transparent">
+                                                <button type="submit" id="updateFaturado_{{$project->apea_id}}" class="border-0 bg-transparent">
                                                     @if($project->faturado == 1)
                                                         <i class="fs-4 fa-solid fa-circle-check text-success"></i>
                                                     @elseif($project->faturado == 0)
