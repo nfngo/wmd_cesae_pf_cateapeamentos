@@ -52,28 +52,22 @@ class LmeController extends Controller
     {
 
         $lme = new Lme();
-        
+
         $this->validate($request, [
             'data' => 'required'
         ]);
 
-        $lme->data = $request->data;
 
-        $carbonDate = Carbon::create($lme->data);
-
-        $year = $carbonDate->year;
-        $month = $carbonDate->month;
-
-        $lme->id = (int)($month . $year);
+            
 
         if ($lme->usd_ton_cobre != "" && $lme->usd_ton_chumbo != "" && $lme->rate_usd_euro != "") {
-            
+
             $lme->usd_ton_cobre = $request->usd_ton_cobre;
             $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
             $lme->rate_usd_euro = $request->rate_usd_euro;
 
         }
-        
+
         else if ($lme->usd_ton_cobre == null &&
                 $lme->usd_ton_chumbo != null &&
                 $lme->rate_usd_euro != null){
@@ -145,6 +139,8 @@ class LmeController extends Controller
                 $lme->custo_venda = $lastLme->custo_venda;
 
            }
+
+
 
         //Lme::create($request->all());
         $lme->save();
@@ -333,6 +329,6 @@ class LmeController extends Controller
      */
     public function destroy(Lme $lme)
     {
-        
+        //
     }
 }

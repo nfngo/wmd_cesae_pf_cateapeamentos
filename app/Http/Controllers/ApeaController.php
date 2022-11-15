@@ -99,6 +99,21 @@ class ApeaController extends Controller
 
     }
 
+    public function updateFaturado(Request $request, $id)
+    {
+        $apea = Apea::findOrFail($id);
+
+        if($apea->faturado == 0) {
+            $apea->faturado = 1;
+        } else {
+            $apea->faturado = 0;
+        }
+
+        $apea->save();
+
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
