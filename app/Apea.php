@@ -13,6 +13,13 @@ class Apea extends Model
     public function ref_externa(){
         return $this->belongsTo(RefExterna::class);
     }
+    public function custo(){
+        return $this->belongsTo(Custos::class);
+    }
+
+    public function controlo_apea(){
+        return $this->belongsTo(ControloApea::class);
+    }
 
     public function estados(){
         return $this->hasMany(Estado::class);
