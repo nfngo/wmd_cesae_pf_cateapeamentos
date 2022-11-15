@@ -53,83 +53,63 @@ class LmeController extends Controller
 
         $lme = new Lme();
 
+        $plastico = Cabo::find(1);
+        $chumbo = Cabo::find(2);
+
+        $tarifa = Tarifa::find(1);
+
         $this->validate($request, [
             'data' => 'required'
-        ]);
+        ]);  
 
+        $lme->data = $request->data;
 
-            
+        $carbonDate = Carbon::create($lme->data);
+
+        $year = $carbonDate->year;
+        $month = $carbonDate->month;
+
+        $lme->id = (int)($month . $year);
+
+        $lme->usd_ton_cobre = $request->usd_ton_cobre;
+        $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
+        $lme->rate_usd_euro = $request->rate_usd_euro;
 
         if ($lme->usd_ton_cobre != "" && $lme->usd_ton_chumbo != "" && $lme->rate_usd_euro != "") {
+          
+            $lme->lme_cobre_kg_plastico = ($lme->usd_ton_cobre / 1000) / $lme->rate_usd_euro;
 
-            $lme->usd_ton_cobre = $request->usd_ton_cobre;
-            $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
-            $lme->rate_usd_euro = $request->rate_usd_euro;
+            $lme->lme_chumbo_kg_plastico = ($lme->usd_ton_chumbo / 1000) / $lme->rate_usd_euro;
+
+            $lme->preco_venda_plastico = ($plastico->perc_lme_cobre * 0.01) * ($lme->lme_cobre_kg_plastico * ($plastico->perc_peso_cobre * 0.01))
+                + ($plastico->perc_lme_chumbo * 0.01) * ($lme->lme_chumbo_kg_plastico * ($plastico->perc_peso_chumbo * 0.01));
+
+            $lme->preco_metal_kg_cabo_plastico = $lme->lme_cobre_kg_plastico * ($plastico->perc_peso_cobre * 0.01)
+                + ($lme->lme_chumbo_kg_plastico * ($plastico->perc_peso_chumbo * 0.01));
+
+            $lme->lme_cobre_kg_chumbo = $lme->lme_cobre_kg_plastico;
+
+            $lme->lme_chumbo_kg_chumbo = ($lme->usd_ton_chumbo / 1000) / $lme->rate_usd_euro;
+
+            $lme->preco_venda_chumbo = ($chumbo->perc_lme_cobre * 0.01) * ($lme->lme_cobre_kg_chumbo * ($chumbo->perc_peso_cobre * 0.01))
+                + ($chumbo->perc_lme_chumbo * 0.01) * ($lme->lme_chumbo_kg_chumbo * ($chumbo->perc_peso_chumbo * 0.01));
+
+            $lme->preco_metal_kg_cabo_chumbo = $lme->lme_cobre_kg_chumbo * ($chumbo->perc_peso_cobre * 0.01)
+                + ($lme->lme_chumbo_kg_chumbo * ($chumbo->perc_peso_chumbo * 0.01));
+
+            $lme->save();
+
+            $lme->custo_mix = $lme->preco_venda_plastico * ($plastico->perc_mix_cabo * 0.01) + ($lme->preco_venda_chumbo * ($chumbo->perc_mix_cabo * 0.01));
+
+            $lme->custo_venda = ($lme->custo_mix - ($tarifa->custo_retirada)) - ($tarifa->custo_operacao);
+
+            $lme->save();
+
+            return redirect('lme-board')->with('status', 'Item criado');
 
         }
 
-        else if ($lme->usd_ton_cobre == null &&
-                $lme->usd_ton_chumbo != null &&
-                $lme->rate_usd_euro != null){
-
-
-                $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
-                $lme->rate_usd_euro = $request->rate_usd_euro;
-
-                $lastLme = DB::table('lmes')
-                ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')
-                ->first();
-
-                $lme->custo_mix = $lastLme->custo_mix;
-                $lme->custo_venda = $lastLme->custo_venda;
-        }
-
-        else if ($lme->usd_ton_cobre == null &&
-               $lme->usd_ton_chumbo == null &&
-               $lme->rate_usd_euro != null) {
-
-               $lme->rate_usd_euro = $request->rate_usd_euro;
-
-               $lastLme = DB::table('lmes')
-                ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')
-                ->first();
-
-                $lme->custo_mix = $lastLme->custo_mix;
-                $lme->custo_venda = $lastLme->custo_venda;
-           }
-          else if ($lme->usd_ton_cobre != null &&
-               $lme->usd_ton_chumbo == null &&
-               $lme->rate_usd_euro == null) {
-
-               $lme->usd_ton_cobre = $request->usd_ton_cobre;
-
-               $lastLme = DB::table('lmes')
-                ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')
-                ->first();
-
-                $lme->custo_mix = $lastLme->custo_mix;
-                $lme->custo_venda = $lastLme->custo_venda;
-
-           }
-           else if ($lme->usd_ton_cobre == null &&
-               $lme->usd_ton_chumbo != null &&
-               $lme->rate_usd_euro == null) {
-
-               $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
-
-               $lastLme = DB::table('lmes')
-                ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')
-                ->first();
-
-                $lme->custo_mix = $lastLme->custo_mix;
-                $lme->custo_venda = $lastLme->custo_venda;
-           }
-           else {
-
+            
             $lastLme = DB::table('lmes')
                 ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
                 ->orderBy('data', 'desc')
@@ -138,8 +118,7 @@ class LmeController extends Controller
                 $lme->custo_mix = $lastLme->custo_mix;
                 $lme->custo_venda = $lastLme->custo_venda;
 
-           }
-
+                $lme->save();
 
 
         //Lme::create($request->all());
@@ -329,6 +308,8 @@ class LmeController extends Controller
      */
     public function destroy(Lme $lme)
     {
-        //
+        $lme->delete();
+
+        return redirect('lme-board')->with('status', 'Eliminado com sucesso');
     }
 }
