@@ -312,8 +312,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($project->apea_id == "")
-                                        @else
+                                        @if($project->apea_id != "")
                                             @if(in_array($pdsApea, ['Cadastro', 'Em Execução', 'Executado', 'Concluído', 'Cancelado']))
                                                 Concluído Proj
                                             @elseif($project->data_plan_p_apea == '0000-00-00')
@@ -336,8 +335,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($project->apea_id == "")
-                                        @else
+                                        @if($project->apea_id != "")
                                             @if(in_array($pdsApea, ['Cadastro', 'Executado', 'Concluído', 'Cancelado']))
                                                 Concluído Const
                                             @elseif($project->data_plan_c_apea == '0000-00-00')
@@ -360,8 +358,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($project->apea_id == "")
-                                        @else
+                                        @if($project->apea_id != "")
                                             @if(in_array($pdsApea, ['Concluído', 'Cancelado']))
                                                 Concluído
                                             @elseif($project->data_plan_cadastro_apea == '0000-00-00')
@@ -376,10 +373,19 @@
                                     <td>{{ $project->tipo_cabos}}</td>
                                     <td>{{ $project->peso_cabos}}</td>
                                     <td>
-                                        @if($project->faturado == 1)
-                                            <i class="fs-4 fa-solid fa-circle-check text-success"></i>
-                                        @elseif($project->faturado == 0)
-                                            <i class="fs-4 fa-sharp fa-solid fa-circle-xmark text-danger"></i>
+                                        @if($project->apea_id != "")
+                                            <form method="POST"
+                                                  action="{{ route('updateFaturado', $project->apea_id) }}">
+                                                @csrf
+                                                <input hidden name="id" value="$project->apea_id"></input>
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    @if($project->faturado == 1)
+                                                        <i class="fs-4 fa-solid fa-circle-check text-success"></i>
+                                                    @elseif($project->faturado == 0)
+                                                        <i class="fs-4 fa-sharp fa-solid fa-circle-xmark text-danger"></i>
+                                                    @endif
+                                                </button>
+                                            </form>
                                         @endif
                                     </td>
                                 </tr>

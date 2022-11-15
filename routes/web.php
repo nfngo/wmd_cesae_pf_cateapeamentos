@@ -23,6 +23,7 @@ Route::get('estados/search', 'EstadosController@search');
 //Apeamento
 Route::get('apea/{apea}/edit', 'ApeaController@edit');
 Route::put('apea/{apea}', 'ApeaController@update');
+Route::post('apea/{id}', 'ApeaController@updateFaturado')->name('updateFaturado');
 
 //Baldeaçao
 Route::get('bald/{bald}/edit', 'BaldController@edit');
@@ -34,6 +35,7 @@ Route::get('lme/{lme}/edit', 'LmeController@edit');
 Route::put('lme/{lme}', 'LmeController@update');
 Route::get('lme/create', 'LmeController@create');
 Route::post('lme', 'LmeController@store');
+Route::delete('lme/{lme}', 'LmeController@destroy');
 
 // Cabos
 Route::get('cabos','CaboController@index');

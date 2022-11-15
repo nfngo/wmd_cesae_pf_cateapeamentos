@@ -37,18 +37,23 @@
                                 <td>{{ $item->rate_usd_euro }}</td>
                                 <td>{{ $item->custo_mix }}€</td>
                                 <td>{{ $item->custo_venda }}€</td>
+                                <td class="d-none">
+                                    <form id="deleteForm" action="{{ url('lme/' . $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>
                             </tr>
-                            @if($loop->first)
-                                <button type="button" class="position-absolute btn btn-filled lme-edit-btn" data-bs-toggle="modal"
+                            @if($loop->first && (Request::query('page') == 1 || !isset($_GET['page'])))
+                                <button type="button" class="position-absolute btn btn-filled lme-edit-btn"
+                                        data-bs-toggle="modal"
                                         data-bs-target="#editModal" data-toggle="tooltip" title="Editar último mês"
                                         onclick="populateEditForm({{json_encode($item)}})">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
-                                <form class="d-inline" action="{{url('lme/' . $item->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="position-absolute btn btn-filled lme-delete-btn"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
+                                <button type="submit" form="deleteForm"
+                                        class="position-absolute btn btn-filled lme-delete-btn"><i
+                                        class="fa-solid fa-trash-can"></i></button>
                             @endif
                         @endforeach
                         </tbody>

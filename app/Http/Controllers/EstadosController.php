@@ -19,7 +19,8 @@ class EstadosController extends Controller
                 'balds.data_plan_c_bald', 'balds.data_real_cadastro_bald', 'balds.data_plan_cadastro_bald', DB::raw('apeas.id as apea_id'),
                 'apeas.estado_nemesis_apea_id', 'apeas.data_estado_global_apea', 'apeas.data_envio_proj_sp_apea', 'apeas.data_real_p_apea', 'apeas.data_plan_p_apea', 'apeas.data_real_c_apea',
                 'apeas.data_plan_c_apea', 'apeas.data_real_cadastro_apea', 'apeas.data_plan_cadastro_apea', 'apeas.tipo_cabos', 'apeas.peso_cabos', 'apeas.faturado')
-            ->paginate(12);
+            ->paginate(12)
+            ->onEachSide(1);
 
         $estados = Estado::all();
         return view('pages.estados.index', ['info' => $info, 'estados' => $estados]);
@@ -75,6 +76,7 @@ class EstadosController extends Controller
             ->where($andConditions)
             ->orWhere($orConditions)
             ->paginate(12)
+            ->onEachSide(1)
             ->appends(['estado_id' => $estado_id]);
 
         return view('pages.estados.index', ['info' => $info, 'estados' => $estados]);
