@@ -37,6 +37,7 @@ Route::get('lme/{lme}/edit', 'LmeController@edit');
 Route::put('lme/{lme}', 'LmeController@update');
 Route::get('lme/create', 'LmeController@create');
 Route::post('lme', 'LmeController@store');
+Route::delete('lme/{lme}', 'LmeController@destroy');
 
 // Cabos
 Route::get('cabos','CaboController@index');

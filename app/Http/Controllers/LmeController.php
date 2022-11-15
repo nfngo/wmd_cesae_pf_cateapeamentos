@@ -51,14 +51,20 @@ class LmeController extends Controller
     public function store(Request $request)
     {
 
-        $lme = Lme::all();
+        $lme = new Lme();
         
         $this->validate($request, [
             'data' => 'required'
         ]);
 
+        $lme->data = $request->data;
 
-            
+        $carbonDate = Carbon::create($lme->data);
+
+        $year = $carbonDate->year;
+        $month = $carbonDate->month;
+
+        $lme->id = (int)($month . $year);
 
         if ($lme->usd_ton_cobre != "" && $lme->usd_ton_chumbo != "" && $lme->rate_usd_euro != "") {
             
@@ -78,13 +84,14 @@ class LmeController extends Controller
 
                 $lastLme = DB::table('lmes')
                 ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')->first();
+                ->orderBy('data', 'desc')
+                ->first();
 
                 $lme->custo_mix = $lastLme->custo_mix;
                 $lme->custo_venda = $lastLme->custo_venda;
         }
 
-        if ($lme->usd_ton_cobre == null &&
+        else if ($lme->usd_ton_cobre == null &&
                $lme->usd_ton_chumbo == null &&
                $lme->rate_usd_euro != null) {
 
@@ -92,12 +99,13 @@ class LmeController extends Controller
 
                $lastLme = DB::table('lmes')
                 ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')->first();
+                ->orderBy('data', 'desc')
+                ->first();
 
                 $lme->custo_mix = $lastLme->custo_mix;
                 $lme->custo_venda = $lastLme->custo_venda;
            }
-           if ($lme->usd_ton_cobre != null &&
+          else if ($lme->usd_ton_cobre != null &&
                $lme->usd_ton_chumbo == null &&
                $lme->rate_usd_euro == null) {
 
@@ -105,13 +113,14 @@ class LmeController extends Controller
 
                $lastLme = DB::table('lmes')
                 ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')->first();
+                ->orderBy('data', 'desc')
+                ->first();
 
                 $lme->custo_mix = $lastLme->custo_mix;
                 $lme->custo_venda = $lastLme->custo_venda;
 
            }
-           if ($lme->usd_ton_cobre == null &&
+           else if ($lme->usd_ton_cobre == null &&
                $lme->usd_ton_chumbo != null &&
                $lme->rate_usd_euro == null) {
 
@@ -119,13 +128,26 @@ class LmeController extends Controller
 
                $lastLme = DB::table('lmes')
                 ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
-                ->orderBy('data', 'desc')->first();
+                ->orderBy('data', 'desc')
+                ->first();
 
                 $lme->custo_mix = $lastLme->custo_mix;
                 $lme->custo_venda = $lastLme->custo_venda;
            }
+           else {
+
+            $lastLme = DB::table('lmes')
+                ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
+                ->orderBy('data', 'desc')
+                ->first();
+
+                $lme->custo_mix = $lastLme->custo_mix;
+                $lme->custo_venda = $lastLme->custo_venda;
+
+           }
 
         //Lme::create($request->all());
+        $lme->save();
         return redirect('lme-board')->with('status', 'Item created successfully!');
     }
 
@@ -311,6 +333,6 @@ class LmeController extends Controller
      */
     public function destroy(Lme $lme)
     {
-        //
+        
     }
 }

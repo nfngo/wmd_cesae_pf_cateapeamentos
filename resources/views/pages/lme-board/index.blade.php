@@ -124,7 +124,7 @@
                                 <input
                                     type="date"
                                     id="new_data"
-                                    name="new_data"
+                                    name="data"
                                     class="form-control input-custom
                                     @error('data') is-invalid @enderror"
                                     value=""
@@ -135,7 +135,7 @@
                                 <label class="fw-semibold mb-1" for="new_usd_ton_cobre">USD/Ton Cobre</label>
                                 <input type="number"
                                        id="new_usd_ton_cobre"
-                                       name="new_usd_ton_cobre"
+                                       name="usd_ton_cobre"
                                        value="{{ old('new_usd_ton_cobre') }}"
                                        placeholder="Preço da tonelada de cobre"
                                        class="form-control input-custom @error('new_usd_ton_cobre') is-invalid @enderror"
@@ -146,7 +146,7 @@
                                 <label class="fw-semibold mb-1" for="new_usd_ton_chumbo">USD/Ton Chumbo</label>
                                 <input type="number"
                                        id="new_usd_ton_chumbo"
-                                       name="new_usd_ton_chumbo"
+                                       name="usd_ton_chumbo"
                                        value="{{ old('new_rate_usd_euro') }}"
                                        placeholder="Preço da tonelada de chumbo"
                                        class="form-control input-custom @error('new_usd_ton_chumbo') is-invalid @enderror"
@@ -157,7 +157,7 @@
                                 <label class="fw-semibold mb-1" for="new_rate_usd_euro">Exchange rate USD/€</label>
                                 <input type="number"
                                        id="new_rate_usd_euro"
-                                       name="new_rate_usd_euro"
+                                       name="rate_usd_euro"
                                        value="{{ old('new_rate_usd_euro') }}"
                                        placeholder="Exchange rate USD/€"
                                        class="form-control input-custom @error('new_rate_usd_euro') is-invalid @enderror"

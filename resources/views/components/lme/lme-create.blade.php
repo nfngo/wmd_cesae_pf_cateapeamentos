@@ -1,5 +1,5 @@
 <h1>Create</h1>
-<form action="{{url('lme/create')}}" method="POST" enctype="multipart/form-data">
+<form action="{{url('lme')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="name">Data</label>
