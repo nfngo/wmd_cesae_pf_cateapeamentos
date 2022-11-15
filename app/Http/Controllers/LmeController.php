@@ -19,7 +19,7 @@ class LmeController extends Controller
      */
     public function index()
     {
-        $lme = Lme::paginate(12);
+        $lme = Lme::paginate(12)->onEachSide(1);
         $tarifa = Tarifa::all();
 
         $plastico = DB::table('cabos')
@@ -208,7 +208,7 @@ class LmeController extends Controller
 
             $lme->save();
 
-            return redirect('lme-board')->with('status', 'Editado');
+            return redirect('lme-board')->with('status', 'Registo editado com sucesso.');
 
         }
 
@@ -219,85 +219,9 @@ class LmeController extends Controller
         $lme->custo_mix = $lastLme->custo_mix;
         $lme->custo_venda = $lastLme->custo_venda;
 
-//        else {
-//            if ($lme->usd_ton_cobre == null &&
-//                $lme->usd_ton_chumbo != null &&
-//                $lme->rate_usd_euro != null) {
-//
-//                $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
-//                $lme->rate_usd_euro = $request->rate_usd_euro;
-//
-//                $lme->preco_venda_plastico = null;
-//                $lme->preco_metal_kg_cabo_plastico = null;
-//                $lme->lme_cobre_kg_plastico = null;
-//                $lme->lme_chumbo_kg_plastico = null;
-//                $lme->preco_venda_chumbo = null;
-//                $lme->preco_metal_kg_cabo_chumbo = null;
-//                $lme->lme_cobre_kg_chumbo = null;
-//                $lme->lme_chumbo_kg_chumbo = null;
-//                $lme->custo_mix = null;
-//                $lme->custo_venda = null;
-//
-//            }
-//            if ($lme->usd_ton_cobre == null &&
-//                $lme->usd_ton_chumbo == null &&
-//                $lme->rate_usd_euro != null) {
-//
-//                $lme->rate_usd_euro = $request->rate_usd_euro;
-//
-//                $lme->preco_venda_plastico = null;
-//                $lme->preco_metal_kg_cabo_plastico = null;
-//                $lme->lme_cobre_kg_plastico = null;
-//                $lme->lme_chumbo_kg_plastico = null;
-//                $lme->preco_venda_chumbo = null;
-//                $lme->preco_metal_kg_cabo_chumbo = null;
-//                $lme->lme_cobre_kg_chumbo = null;
-//                $lme->lme_chumbo_kg_chumbo = null;
-//                $lme->custo_mix = null;
-//                $lme->custo_venda = null;
-//
-//            }
-//            if ($lme->usd_ton_cobre != null &&
-//                $lme->usd_ton_chumbo == null &&
-//                $lme->rate_usd_euro == null) {
-//
-//                $lme->usd_ton_cobre = $request->usd_ton_cobre;
-//
-//                $lme->preco_venda_plastico = null;
-//                $lme->preco_metal_kg_cabo_plastico = null;
-//                $lme->lme_cobre_kg_plastico = null;
-//                $lme->lme_chumbo_kg_plastico = null;
-//                $lme->preco_venda_chumbo = null;
-//                $lme->preco_metal_kg_cabo_chumbo = null;
-//                $lme->lme_cobre_kg_chumbo = null;
-//                $lme->lme_chumbo_kg_chumbo = null;
-//                $lme->custo_mix = null;
-//                $lme->custo_venda = null;
-//
-//            }
-//            if ($lme->usd_ton_cobre == null &&
-//                $lme->usd_ton_chumbo != null &&
-//                $lme->rate_usd_euro == null) {
-//
-//                $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
-//
-//                $lme->preco_venda_plastico = null;
-//                $lme->preco_metal_kg_cabo_plastico = null;
-//                $lme->lme_cobre_kg_plastico = null;
-//                $lme->lme_chumbo_kg_plastico = null;
-//                $lme->preco_venda_chumbo = null;
-//                $lme->preco_metal_kg_cabo_chumbo = null;
-//                $lme->lme_cobre_kg_chumbo = null;
-//                $lme->lme_chumbo_kg_chumbo = null;
-//                $lme->custo_mix = null;
-//                $lme->custo_venda = null;
-//
-//            }
-//        }
-
         $lme->save();
 
-        return redirect('lme-board')->with('status', 'Editado com sucesso');
+        return redirect('lme-board')->with('status', 'Registo editado com sucesso.');
     }
 
     /**

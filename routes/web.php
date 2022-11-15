@@ -24,31 +24,39 @@ Route::get('estados', 'EstadosController@index');
 Route::get('estados/search', 'EstadosController@search');
 
 //Apeamento
-Route::get('apea/{apea}/edit', 'ApeaController@edit');
-Route::put('apea/{apea}', 'ApeaController@update');
-Route::post('apea/{id}', 'ApeaController@updateFaturado')->name('updateFaturado');
+Route::prefix('apea')->group(function (){
+    Route::get('{apea}/edit', 'ApeaController@edit');
+    Route::put('{apea}', 'ApeaController@update');
+    Route::post('{id}', 'ApeaController@updateFaturado')->name('updateFaturado');
+});
 
 //Baldeaçao
 Route::get('bald/{bald}/edit', 'BaldController@edit');
 Route::put('bald/{bald}', 'BaldController@update');
 
 //Lme
-Route::get('lme', 'LmeController@index');
-Route::get('lme/{lme}/edit', 'LmeController@edit');
-Route::put('lme/{lme}', 'LmeController@update');
-Route::get('lme/create', 'LmeController@create');
-Route::post('lme', 'LmeController@store');
-Route::delete('lme/{lme}', 'LmeController@destroy');
+Route::prefix('lme')->group(function(){
+    Route::get('', 'LmeController@index');
+    Route::get('{lme}/edit', 'LmeController@edit');
+    Route::put('{lme}', 'LmeController@update');
+    Route::get('create', 'LmeController@create');
+    Route::post('', 'LmeController@store');
+    Route::delete('{lme}', 'LmeController@destroy');
+});
 
 // Cabos
-Route::get('cabos','CaboController@index');
-Route::get('cabo/{cabo}/edit', 'CaboController@edit');
-Route::put('cabo/{cabo}', 'CaboController@update');
+Route::prefix('cabos')->group(function (){
+    Route::get('','CaboController@index');
+    Route::get('{cabo}/edit', 'CaboController@edit');
+    Route::put('{cabo}', 'CaboController@update');
+});
 
 // Tarifas
-Route::get('tarifas','TarifaController@index');
-Route::get('tarifa/{tarifa}/edit', 'TarifaController@edit');
-Route::put('tarifa/{tarifa}', 'TarifaController@update');
+Route::prefix('tarifas')->group(function (){
+    Route::get('','TarifaController@index');
+    Route::get('{tarifa}/edit', 'TarifaController@edit');
+    Route::put('{tarifa}', 'TarifaController@update');
+});
 
 //ControloApeamentos
 Route::get('control-apea', 'ControloApeaController@index');

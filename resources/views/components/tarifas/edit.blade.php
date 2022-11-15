@@ -6,7 +6,7 @@
         <div class="col-8 col-md-12 col-lg-8 tarifas-card-content">
             <div class="row overflow-hidden">
                 <div class="col-12">
-                    <form id="tarifasForm" class="card-form" action="{{url('tarifa/'.$tarifa->id)}}" method="POST">
+                    <form id="tarifasForm" class="card-form" action="{{url('tarifas/'.$tarifa->id)}}" method="POST">
                         @csrf
                         @method('PUT')
                         <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Editar Tarifas</p>

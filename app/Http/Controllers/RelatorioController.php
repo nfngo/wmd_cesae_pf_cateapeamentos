@@ -22,7 +22,8 @@ class RelatorioController extends Controller
                 DB::raw('materials.peso_kg_m * controlo_apeas.comprimento_real as kg'),
                 DB::raw('lmes.custo_venda as valor_unit_venda'),
                 DB::raw('(materials.peso_kg_m * controlo_apeas.comprimento_real)  * lmes.custo_venda as valor_total_venda'))
-            ->paginate(12);
+            ->paginate(12)
+            ->onEachSide(1);
 
 
 

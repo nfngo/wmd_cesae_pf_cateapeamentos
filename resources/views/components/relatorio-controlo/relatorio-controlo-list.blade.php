@@ -56,11 +56,12 @@
 
 
             <div class="card border-0 shadow-lg mt-5">
-                <div class="" style="overflow-x: scroll">
-                    @if($control_apea->count() == 0)
-                        <p> Não existem dados</p>
-                    @else
-
+                @if($control_apea->count() == 0)
+                    <div class="col-12 m-3">
+                        <p class="mb-0">Resultados não encontrados.</p>
+                    </div>
+                @else
+                    <div class="" style="overflow-x: scroll">
                         <table id="controloApea" class="table">
                             <thead>
                             <tr class="bg-light-blue text-white bt-0">
@@ -100,9 +101,9 @@
                             @endforeach
                             </tbody>
                         </table>
-                    @endif
-                </div>
-                {!! $control_apea->appends(\Request::except('page'))->render() !!}
+                        @endif
+                    </div>
+                    {!! $control_apea->appends(\Request::except('page'))->render() !!}
             </div>
         </div>
     </div>

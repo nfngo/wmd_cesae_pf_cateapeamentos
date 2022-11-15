@@ -28,7 +28,7 @@
             </div>
             <div class="col-12 col-lg-6 mt-3 mt-lg-0">
                 <div class="row flex-nowrap overflow-hidden position-relative">
-                    <button type="button" id="cardSwapBtn" class="btn btn-inverted card-btn-swap">Swap</button>
+                    <button type="button" id="cardSwapBtn" class="btn btn-inverted card-btn-swap"><i class="fa-solid fa-rotate"></i></button>
                     <div class="col-12">
                         @component('components.lme-material.lme-material-list', ['materiais' => $materiais[0], 'tipo' => 'Plástico'])
                         @endcomponent

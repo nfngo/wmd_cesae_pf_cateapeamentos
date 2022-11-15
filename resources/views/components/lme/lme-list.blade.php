@@ -22,6 +22,8 @@
                             <th scope="col">USD / Ton Cobre</th>
                             <th scope="col">USD / Ton Chumbo</th>
                             <th scope="col">Exchange rate USD / €</th>
+                            <th scope="col">LME Cobre / Kg</th>
+                            <th class="rounded-0" scope="col">LME Chumbo / Kg</th>
                             <th scope="col">Custo MIX</th>
                             <th class="rounded-0" scope="col">Custo de Venda</th>
                         </tr>
@@ -35,6 +37,8 @@
                                 <td>{{ $item->usd_ton_cobre }}</td>
                                 <td>{{ $item->usd_ton_chumbo }}</td>
                                 <td>{{ $item->rate_usd_euro }}</td>
+                                <td>{{ $item->lme_cobre_kg }}€</td>
+                                <td>{{ $item->lme_chumbo_kg }}€</td>
                                 <td>{{ $item->custo_mix }}€</td>
                                 <td>{{ $item->custo_venda }}€</td>
                                 <td class="d-none">
