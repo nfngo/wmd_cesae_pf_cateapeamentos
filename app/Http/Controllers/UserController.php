@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-
     public function index()
     {
-        $users = User::select('name', 'email','password','is_admin','image')->get();
+        $users = User::all();
 
         return view('pages.users.index')->with(['users' => $users]);
     }
@@ -24,10 +24,16 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
         User::create([
             'name'      => $request->get('name'),
             'email'     => $request->get('email'),
-            'password'  => bcrypt($request->get('password'))
+            'password'  => Hash::make($request->get('password'))
         ]);
 
         return redirect('users')
@@ -72,15 +78,14 @@ class UserController extends Controller
             $user->password = bcrypt($request->get('password'));
         }
 
-        if($request->image != ''){        
-            
+        if($request->image != ''){
+
             //code for remove old file
             if($user->image != ''  && $user->image != null){
                  $file_old = $user->image;
-                 
+
             }
 
-  
             // Get Image File
             $imagePath = $request->file('image');
             // Define Image Name
@@ -90,23 +95,36 @@ class UserController extends Controller
             //Save Image Path
             $user->image = $path;
        }
-       
+
         $user->save();
-        
+
         if ($file_old != "") {
 
             Storage::disk('public')->delete($file_old);
         }
 
-        return redirect('users')
-            ->with('flash_notification.message', 'Profile updated successfully')
-            ->with('flash_notification.level', 'success');
+        return redirect('users');
+    }
+
+    public function updateRole(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        if($user->is_admin == 0) {
+            $user->is_admin = 1;
+        } else {
+            $user->is_admin = 0;
+        }
+
+        $user->save();
+
+        return redirect('users')->with('status', 'Permissões alteradas com sucesso.');
     }
 
     public function destroy(User $user)
     {
         Storage::deleteDirectory('public/images/users/' . $user->id);
-        
+
         $user->delete();
 
         return redirect('users')->with('status', 'Eliminado com sucesso');

@@ -73,14 +73,17 @@ Route::group(['middleware' => 'auth'], function() {
     //Export
     Route::get('relatorio', 'RelatorioController@index');
     Route::get('relatorio/export', [RelatorioController::class, 'export']);
+
+    //Users
+    Route::prefix('users')->group(function(){
+        Route::get('', 'UserController@index');
+        Route::get('{user}/edit', 'UserController@edit');
+        Route::put('{user}', 'UserController@update');
+//        Route::get('/create', 'UserController@create');
+        Route::post('', 'UserController@store');
+        Route::delete('{user}', 'UserController@destroy');
+        Route::post('{id}', 'UserController@updateRole')->name('updateRole');
+    });
+
 });
 
-//Lme
-Route::prefix('users')->group(function(){
-    Route::get('', 'UserController@index');
-    Route::get('{user}/edit', 'UserController@edit');
-    Route::put('{user}', 'UserController@update');
-    Route::get('/create', 'UserController@create');  
-    Route::post('', 'UserController@store');
-    Route::delete('{user}', 'UserController@destroy');  
-});
