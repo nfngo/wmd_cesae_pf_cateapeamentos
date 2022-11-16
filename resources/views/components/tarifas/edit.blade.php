@@ -48,11 +48,11 @@
                         <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Tarifas</p>
                         <div class="d-flex flex-column mb-1">
                             <span class="fw-semibold">Custo de retirada</span>
-                            <span class="fs-3 text-color-light-blue">{{$tarifa->custo_retirada}}€</span>
+                            <span class="fs-3 text-color-light-blue">{{ number_format($tarifa->custo_retirada, 2, ',', ' ') }}€</span>
                         </div>
                         <div class="d-flex flex-column">
                             <span class="fw-semibold">Custo de operação</span>
-                            <span class="fs-3 text-color-light-blue">{{$tarifa->custo_operacao}}€</span>
+                            <span class="fs-3 text-color-light-blue">{{number_format($tarifa->custo_operacao, 2, ',', ' ')}}€</span>
                         </div>
                         <div @isadmin class="col-12 d-flex justify-content-end" @else class="d-none" @endisadmin>
                             <button type="button" id="tarifasBtn" class="btn btn-sm btn-inverted" @isadmin @else disabled @endisadmin>Editar</button>

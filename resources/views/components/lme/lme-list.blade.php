@@ -40,41 +40,41 @@
                                 </td>
                                 <td>
                                     @if($item->usd_ton_cobre != null)
-                                        {{ $item->usd_ton_cobre }}
+                                        {{ number_format($item->usd_ton_cobre, 2, ',', ' ') }}
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->usd_ton_chumbo != null)
-                                        {{ $item->usd_ton_chumbo }}
+                                        {{ number_format($item->usd_ton_chumbo, 2, ',', ' ') }}
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->rate_usd_euro != null)
-                                        {{ $item->rate_usd_euro }}
+                                        {{ number_format($item->rate_usd_euro, 4, ',', ' ') }}
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->lme_cobre_kg != null)
-                                        {{ $item->lme_cobre_kg }}€
+                                        {{ number_format($item->lme_cobre_kg, 2, ',', ' ') }}€
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->lme_chumbo_kg != null)
-                                        {{ $item->lme_chumbo_kg }}€
+                                        {{ number_format($item->lme_chumbo_kg, 2, ',', ' ') }}€
                                     @else
                                         -
                                     @endif
                                 </td>
-                                <td>{{ $item->custo_mix }}€</td>
-                                <td>{{ $item->custo_venda }}€</td>
+                                <td>{{ number_format($item->custo_mix, 2, ',', ' ') }}€</td>
+                                <td>{{ number_format($item->custo_venda, 2, ',', ' ') }}€</td>
                                 @isadmin
                                 <td class="d-none">
                                     <form id="deleteForm" action="{{ url('lme/' . $item->id) }}" method="POST">

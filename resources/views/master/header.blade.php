@@ -32,10 +32,20 @@
             <div class="user-info-container mb-3">
                 <div class="d-flex justify-content-center flex-column align-items-center text-white">
                     <div class="user-img d-flex justify-content-center align-items-center rounded-circle bg-light-blue">
-                        <i class="fa-solid fa-user"></i>
+                        @if(Auth::user()->image)
+                            <img src="" alt="">
+                        @else
+                            <i class="fa-solid fa-user"></i>
+                        @endif
                     </div>
-                    <p class="user-name text-uppercase mt-3 mb-0">João Silva</p>
-                    <p class="user-role text-secondary mt-1">Administrador</p>
+                    <p class="user-name text-uppercase mt-3 mb-0">{{Auth::user()->name}}</p>
+                    <p class="user-role text-secondary mt-1">
+                        @isadmin
+                            Administrador
+                        @else
+                            Consultor
+                        @endisadmin
+                    </p>
 
                 </div>
             </div>

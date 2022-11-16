@@ -24,14 +24,14 @@
                         <tr>
                             <td>
                                 @if($item->preco_venda != null)
-                                    {{ $item->preco_venda }}€
+                                    {{ number_format($item->preco_venda, 2, ',', ' ') }}€
                                 @else
                                     -
                                 @endif
                             </td>
                             <td>
                                 @if($item->preco_metal_kg_cabo != null)
-                                {{ $item->preco_metal_kg_cabo }}€
+                                {{ number_format($item->preco_metal_kg_cabo, 2, ',', ' ') }}€
                                 @else
                                    -
                                 @endif

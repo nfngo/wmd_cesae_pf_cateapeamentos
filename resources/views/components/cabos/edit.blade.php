@@ -4,23 +4,23 @@
             <p class="text-color-secondary-header m-0 fs-4 fw-semibold">{{ucfirst($cabo->material)}}</p>
             <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% no Mix de cabo</span>
-                <span class="fs-3 text-color-light-blue">{{$cabo->perc_mix_cabo}}%</span>
+                <span class="fs-3 text-color-light-blue">{{ number_format($cabo->perc_mix_cabo, 2, ',', ' ') }}%</span>
             </div>
             <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% LME Cobre</span>
-                <span class="fs-3 text-color-light-blue">{{$cabo->perc_lme_cobre}}%</span>
+                <span class="fs-3 text-color-light-blue">{{ number_format($cabo->perc_lme_cobre, 2, ',', ' ') }}%</span>
             </div>
             <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% LME Chumbo</span>
-                <span class="fs-3 text-color-light-blue">{{$cabo->perc_lme_chumbo}}%</span>
+                <span class="fs-3 text-color-light-blue">{{number_format($cabo->perc_lme_chumbo, 2, ',', ' ') }}%</span>
             </div>
             <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% Peso Cabo em cobre</span>
-                <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_cobre}}%</span>
+                <span class="fs-3 text-color-light-blue">{{number_format($cabo->perc_peso_cobre, 2, ',', ' ') }}%</span>
             </div>
             <div class="col-6 d-flex flex-column justify-content-between my-2" style="min-width: 150px;">
                 <span class="fw-semibold">% Peso Cabo em chumbo</span>
-                <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_chumbo}}%</span>
+                <span class="fs-3 text-color-light-blue">{{ number_format($cabo->perc_lme_cobre, 2, ',', ' ') }}%</span>
             </div>
 
             <div @isadmin class="col-12 d-flex justify-content-end" @else class="d-none" @endisadmin>
