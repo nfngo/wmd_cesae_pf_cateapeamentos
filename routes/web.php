@@ -85,5 +85,5 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('{id}', 'UserController@updateRole')->name('updateRole');
     });
 
+    Route::get('custos-apeados', 'CustosApeadosController@index');
 });
-
