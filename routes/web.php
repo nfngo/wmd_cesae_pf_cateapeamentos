@@ -68,3 +68,7 @@ Route::get('lme-board', 'LmeBoardController@index');
 //Export
 Route::get('relatorio', 'RelatorioController@index');
 Route::get('relatorio/export', [RelatorioController::class, 'export']);
+
+
+//CustosApeados
+Route::get('custos-apeados', 'CustosApeadosController@index');
