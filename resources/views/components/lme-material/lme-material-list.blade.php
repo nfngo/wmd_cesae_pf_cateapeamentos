@@ -6,28 +6,42 @@
                     <p class="text-color-secondary-header m-3 fs-4 fw-semibold">{{$tipo}}</p>
                 </div>
             </div>
-            <div class="mb-3" style="overflow-x: scroll">
-                @if($materiais->count() == 0)
-                    <p>Não existem dados</p>
-                @else
-                    <table class="table">
-                        <thead>
-                        <tr class="bg-light-blue text-white bt-0">
-                            <th class="rounded-0" scope="col">Valor de Venda</th>
-                            <th scope="col">Valor do metal por Kg de cabo</th>
+            @if($materiais->count() == 0)
+                <div class="col-12 m-3">
+                    <p class="mb-0">Resultados não encontrados.</p>
+                </div>
+            @else
+
+                <table class="table">
+                    <thead>
+                    <tr class="bg-light-blue text-white bt-0">
+                        <th class="rounded-0" scope="col">Valor de Venda</th>
+                        <th class="rounded-0" scope="col">Valor do metal por Kg de cabo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($materiais as $item)
+                        <tr>
+                            <td>
+                                @if($item->preco_venda != null)
+                                    {{ $item->preco_venda }}€
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+                                @if($item->preco_metal_kg_cabo != null)
+                                {{ $item->preco_metal_kg_cabo }}€
+                                @else
+                                   -
+                                @endif
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($materiais as $item)
-                            <tr>
-                                <td>{{ $item->preco_venda }}€</td>
-                                <td>{{ $item->preco_metal_kg_cabo }}€</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                @endif
-            </div>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
+
             <div class="hide-links">
                 {{$materiais->links()}}
             </div>

@@ -14,9 +14,6 @@
     @if(Request::is('lme-board'))
         <script src="{{ asset('js/lme-board.js') }}" defer></script>
     @endif
-    @if(Request::is('estados' || '/'))
-        <script src="{{ asset('js/estados.js') }}" defer></script>
-    @endif
     @yield('scripts')
 
     <!-- Fonts -->
@@ -31,12 +28,12 @@
 <body>
 <div id="app">
     {{-- Header --}}
-{{--    @guest--}}
-{{--    @else--}}
+    @guest
+    @else
         @component('master.header')
         @endcomponent
-{{--    @endguest--}}
-    {{-- .Header --}}
+    @endguest
+{{--     .Header --}}
 
     {{-- Content --}}
     <main class="mt-custom">
@@ -45,11 +42,11 @@
     {{-- .Content --}}
 
     {{-- Footer --}}
-{{--    @guest--}}
-{{--    @else--}}
+    @guest
+    @else
         @component('master.footer')
         @endcomponent
-{{--    @endguest--}}
+    @endguest
     {{-- .Footer --}}
 </div>
 </body>

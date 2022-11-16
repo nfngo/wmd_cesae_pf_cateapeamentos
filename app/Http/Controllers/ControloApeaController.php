@@ -6,7 +6,6 @@ use App\Apea;
 use App\ControloApea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use mysql_xdevapi\CrudOperationSortable;
 
 class ControloApeaController extends Controller
 {

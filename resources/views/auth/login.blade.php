@@ -1,7 +1,7 @@
 @extends('master.main')
 
 @section('content')
-    <div class="login-container d-flex w-100 vh-100 align-items-center justify-content-center bg-blue">
+    <div class="login-container d-flex position-absolute top-0 start-0 w-100 vh-100 align-items-center justify-content-center bg-blue">
         <div class="login-wrapper">
             <h2 class="text-uppercase text-white fs-4 mb-4">Iniciar Sessão</h2>
             <form method="POST" action="{{ route('login') }}" class="d-flex flex-column">

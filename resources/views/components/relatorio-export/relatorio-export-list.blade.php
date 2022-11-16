@@ -13,41 +13,41 @@
             <div class="card border-0 shadow-lg mt-4">
                 <div class="" style="overflow-x: scroll">
 
-                        <table id="dadosRelatorio" class="table">
-                            <thead>
-                            <tr class="bg-light-blue text-white bt-0">
+                    <table id="dadosRelatorio" class="table">
+                        <thead>
+                        <tr class="bg-light-blue text-white bt-0">
 
-                                <th scope="col">Numero Externo</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">idMaterial</th>
-                                <th scope="col">Descrição</th>
-                                <th scope="col">Cabo</th>
-                                <th scope="col"> Calibre</th>
-                                <th scope="col">Pares</th>
-                                <th scope="col">Comp(m)</th>
-                                <th scope="col">Kg</th>
-                                <th scope="col">Valor Unit Venda</th>
-                                <th scope="col">Valor Total Venda</th>
+                            <th scope="col">Numero Externo</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">idMaterial</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Cabo</th>
+                            <th scope="col"> Calibre</th>
+                            <th scope="col">Pares</th>
+                            <th scope="col">Comp(m)</th>
+                            <th scope="col">Kg</th>
+                            <th scope="col">Valor Unit Venda</th>
+                            <th scope="col">Valor Total Venda</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($dados as $dado)
+                            <tr>
+                                <td>{{ $dado->apea_id}}</td>
+                                <td>{{ $dado->data}}</td>
+                                <td>{{ $dado->material_id }}</td>
+                                <td>{{ $dado->descricao}} </td>
+                                <td>{{ $dado->cabo}}</td>
+                                <td>{{ $dado->calibre}}</td>
+                                <td>{{ $dado->pares}}</td>
+                                <td>{{ $dado->comp}}</td>
+                                <td>{{ $dado->kg}}</td>
+                                <td>{{$dado->valor_unit_venda}}€</td>
+                                <td>{{number_format($dado->valor_total_venda, 2, ',', ' ')}}€</td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($dados as $dado)
-                                <tr>
-                                    <td>{{ $dado->apea_id}}</td>
-                                    <td>{{ $dado->data}}</td>
-                                    <td>{{ $dado->material_id }}</td>
-                                    <td>{{ $dado->descricao}} </td>
-                                    <td>{{ $dado->cabo}}</td>
-                                    <td>{{ $dado->calibre}}</td>
-                                    <td>{{ $dado->pares}}</td>
-                                    <td>{{ $dado->comp}}</td>
-                                    <td>{{ $dado->kg}}</td>
-                                    <td>{{$dado->valor_unit_venda}}€</td>
-                                    <td>{{$dado->valor_total_venda}}€</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
+                        </tbody>
+                    </table>
                     {{$dados->links()}}
                 </div>
             </div>

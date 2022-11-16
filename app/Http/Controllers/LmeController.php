@@ -50,7 +50,6 @@ class LmeController extends Controller
      */
     public function store(Request $request)
     {
-
         $lme = new Lme();
 
         $plastico = Cabo::find(1);
@@ -58,9 +57,11 @@ class LmeController extends Controller
 
         $tarifa = Tarifa::find(1);
 
+        $teste = Carbon::now()->subMonth();
+
         $this->validate($request, [
-            'data' => 'required'
-        ]);  
+            'data' => 'required|date|after:'.$teste
+        ]);
 
         $lme->data = $request->data;
 
@@ -71,12 +72,18 @@ class LmeController extends Controller
 
         $lme->id = (int)($month . $year);
 
+        $tempLme = Lme::find((int)($month . $year));
+
+        if($tempLme) {
+            return redirect('lme-board')->with('error', 'Data já existente.');
+        }
+
         $lme->usd_ton_cobre = $request->usd_ton_cobre;
         $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
         $lme->rate_usd_euro = $request->rate_usd_euro;
 
         if ($lme->usd_ton_cobre != "" && $lme->usd_ton_chumbo != "" && $lme->rate_usd_euro != "") {
-          
+
             $lme->lme_cobre_kg = ($lme->usd_ton_cobre / 1000) / $lme->rate_usd_euro;
 
             $lme->lme_chumbo_kg = ($lme->usd_ton_chumbo / 1000) / $lme->rate_usd_euro;
@@ -105,7 +112,7 @@ class LmeController extends Controller
 
         }
 
-            
+
             $lastLme = DB::table('lmes')
                 ->select('id', 'data', 'usd_ton_cobre', 'usd_ton_chumbo', 'rate_usd_euro', 'custo_venda', 'custo_mix')
                 ->orderBy('data', 'desc')
@@ -169,6 +176,12 @@ class LmeController extends Controller
 
         $lme->id = (int)($month . $year);
 
+        $tempLme = Lme::find((int)($month . $year));
+
+        if($tempLme) {
+            return redirect('lme-board')->with('error', 'Data já existente.');
+        }
+
         //$lme->id = DB::raw("SELECT MONTH(data) from lmes").DB::raw("SELECT YEAR(data) from lmes");
         $lme->usd_ton_cobre = $request->usd_ton_cobre;
         $lme->usd_ton_chumbo = $request->usd_ton_chumbo;
@@ -176,15 +189,15 @@ class LmeController extends Controller
 
         if ($lme->usd_ton_cobre != "" && $lme->usd_ton_chumbo != "" && $lme->rate_usd_euro != "") {
 
+            $lme->lme_cobre_kg = ($lme->usd_ton_cobre / 1000) / $lme->rate_usd_euro;
+
+            $lme->lme_chumbo_kg = ($lme->usd_ton_chumbo / 1000) / $lme->rate_usd_euro;
+
             $lme->preco_venda_plastico = ($plastico->perc_lme_cobre * 0.01) * ($lme->lme_cobre_kg * ($plastico->perc_peso_cobre * 0.01))
                 + ($plastico->perc_lme_chumbo * 0.01) * ($lme->lme_chumbo_kg * ($plastico->perc_peso_chumbo * 0.01));
 
             $lme->preco_metal_kg_cabo_plastico = $lme->lme_cobre_kg * ($plastico->perc_peso_cobre * 0.01)
                 + ($lme->lme_chumbo_kg * ($plastico->perc_peso_chumbo * 0.01));
-
-            $lme->lme_cobre_kg = ($lme->usd_ton_cobre / 1000) / $lme->rate_usd_euro;
-
-            $lme->lme_chumbo_kg = ($lme->usd_ton_chumbo / 1000) / $lme->rate_usd_euro;
 
             $lme->preco_venda_chumbo = ($chumbo->perc_lme_cobre * 0.01) * ($lme->lme_cobre_kg * ($chumbo->perc_peso_cobre * 0.01))
                 + ($chumbo->perc_lme_chumbo * 0.01) * ($lme->lme_chumbo_kg * ($chumbo->perc_peso_chumbo * 0.01));
@@ -201,7 +214,6 @@ class LmeController extends Controller
             $lme->save();
 
             return redirect('lme-board')->with('status', 'Registo editado com sucesso.');
-
         }
 
         $lastLme = DB::table('lmes')

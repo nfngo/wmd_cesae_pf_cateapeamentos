@@ -10,14 +10,16 @@
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
-            <div class="mb-3 overflow-hidden">
-                @if($lme->count() == 0)
-                    <p>Não existem dados</p>
-                @else
+
+            @if($lme->count() == 0)
+                <div class="col-12 m-3">
+                    <p class="mb-0">Resultados não encontrados.</p>
+                </div>
+            @else
+                <div class="mb-3" style="overflow-x: scroll">
                     <table class="table">
                         <thead>
                         <tr class="bg-light-blue text-white bt-0">
-                            {{--                            <th class="rounded-0" scope="col">Id</th>--}}
                             <th class="rounded-0" scope="col">Mês</th>
                             <th scope="col">USD / Ton Cobre</th>
                             <th scope="col">USD / Ton Chumbo</th>
@@ -34,11 +36,41 @@
                                 <td>
                                     {{\Carbon\Carbon::parse($item->data)->format('M/Y')}}
                                 </td>
-                                <td>{{ $item->usd_ton_cobre }}</td>
-                                <td>{{ $item->usd_ton_chumbo }}</td>
-                                <td>{{ $item->rate_usd_euro }}</td>
-                                <td>{{ $item->lme_cobre_kg }}€</td>
-                                <td>{{ $item->lme_chumbo_kg }}€</td>
+                                <td>
+                                    @if($item->usd_ton_cobre != null)
+                                        {{ $item->usd_ton_cobre }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($item->usd_ton_chumbo != null)
+                                        {{ $item->usd_ton_chumbo }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($item->rate_usd_euro != null)
+                                        {{ $item->rate_usd_euro }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($item->lme_cobre_kg != null)
+                                        {{ $item->lme_cobre_kg }}€
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($item->lme_chumbo_kg != null)
+                                        {{ $item->lme_chumbo_kg }}€
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                                 <td>{{ $item->custo_mix }}€</td>
                                 <td>{{ $item->custo_venda }}€</td>
                                 <td class="d-none">
@@ -62,9 +94,9 @@
                         @endforeach
                         </tbody>
                     </table>
-                @endif
-            </div>
-            {{$lme->links()}}
+                    @endif
+                </div>
+                {{$lme->links()}}
         </div>
     </div>
 </div>

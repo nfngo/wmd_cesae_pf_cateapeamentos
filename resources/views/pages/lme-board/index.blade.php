@@ -8,6 +8,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
         <div class="row lme-cards-container">
             <div class="col-12 col-md-4">
                 @component('components.tarifas.edit', ['tarifa' => $tarifa])
@@ -22,13 +28,14 @@
         </div>
 
         <div class="row mt-5">
-            <div id="lmeContainer" class="col-12 col-lg-6">
+            <div id="lmeContainer" class="col-12 col-lg-9">
                 @component('components.lme.lme-list', ['lme' => $lme])
                 @endcomponent
             </div>
-            <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+            <div class="col-12 col-lg-3 mt-3 mt-lg-0">
                 <div class="row flex-nowrap overflow-hidden position-relative">
-                    <button type="button" id="cardSwapBtn" class="btn btn-inverted card-btn-swap"><i class="fa-solid fa-rotate"></i></button>
+                    <button type="button" id="cardSwapBtn" class="btn btn-inverted card-btn-swap"><i
+                            class="fa-solid fa-rotate"></i></button>
                     <div class="col-12">
                         @component('components.lme-material.lme-material-list', ['materiais' => $materiais[0], 'tipo' => 'Plástico'])
                         @endcomponent
@@ -62,6 +69,7 @@
                                     class="form-control input-custom
                                     @error('data') is-invalid @enderror"
                                     value=""
+                                    min="{{\Carbon\Carbon::now()->subMonth()->firstOfMonth()->format('Y-m-d')}}"
                                     required>
                             </div>
                             <div class="form-group mb-2">
@@ -128,8 +136,13 @@
                                     class="form-control input-custom
                                     @error('data') is-invalid @enderror"
                                     value=""
-                                    min="{{\Carbon\Carbon::now()->format('Y-m-d')}}"
+                                    min="{{\Carbon\Carbon::now()->subMonth()->firstOfMonth()->format('Y-m-d')}}"
                                     required>
+                                @error('data')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group mb-2">
                                 <label class="fw-semibold mb-1" for="new_usd_ton_cobre">USD/Ton Cobre</label>
