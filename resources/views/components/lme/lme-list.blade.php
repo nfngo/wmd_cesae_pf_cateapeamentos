@@ -5,10 +5,12 @@
                 <div class="col-12">
                     <p class="text-color-secondary-header m-3 fs-4 fw-semibold">LME</p>
                 </div>
+                @isadmin
                 <button type="button" class="position-absolute btn btn-filled lme-add-btn" data-bs-toggle="modal"
                         data-bs-target="#createModal">
                     <i class="fa-solid fa-plus"></i>
                 </button>
+                @endisadmin
             </div>
 
             @if($lme->count() == 0)
@@ -38,48 +40,51 @@
                                 </td>
                                 <td>
                                     @if($item->usd_ton_cobre != null)
-                                        {{ $item->usd_ton_cobre }}
+                                        {{ number_format($item->usd_ton_cobre, 2, ',', ' ') }}
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->usd_ton_chumbo != null)
-                                        {{ $item->usd_ton_chumbo }}
+                                        {{ number_format($item->usd_ton_chumbo, 2, ',', ' ') }}
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->rate_usd_euro != null)
-                                        {{ $item->rate_usd_euro }}
+                                        {{ number_format($item->rate_usd_euro, 4, ',', ' ') }}
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->lme_cobre_kg != null)
-                                        {{ $item->lme_cobre_kg }}€
+                                        {{ number_format($item->lme_cobre_kg, 2, ',', ' ') }}€
                                     @else
                                         -
                                     @endif
                                 </td>
                                 <td>
                                     @if($item->lme_chumbo_kg != null)
-                                        {{ $item->lme_chumbo_kg }}€
+                                        {{ number_format($item->lme_chumbo_kg, 2, ',', ' ') }}€
                                     @else
                                         -
                                     @endif
                                 </td>
-                                <td>{{ $item->custo_mix }}€</td>
-                                <td>{{ $item->custo_venda }}€</td>
+                                <td>{{ number_format($item->custo_mix, 2, ',', ' ') }}€</td>
+                                <td>{{ number_format($item->custo_venda, 2, ',', ' ') }}€</td>
+                                @isadmin
                                 <td class="d-none">
                                     <form id="deleteForm" action="{{ url('lme/' . $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                 </td>
+                                @endisadmin
                             </tr>
+                            @isadmin
                             @if($loop->first && (Request::query('page') == 1 || !isset($_GET['page'])))
                                 <button type="button" class="position-absolute btn btn-filled lme-edit-btn"
                                         data-bs-toggle="modal"
@@ -88,9 +93,12 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button type="submit" form="deleteForm"
-                                        class="position-absolute btn btn-filled lme-delete-btn"><i
-                                        class="fa-solid fa-trash-can"></i></button>
+                                        class="position-absolute btn btn-filled lme-delete-btn"
+                                        data-toggle="tooltip" title="Eliminar último mês">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
                             @endif
+                            @endisadmin
                         @endforeach
                         </tbody>
                     </table>

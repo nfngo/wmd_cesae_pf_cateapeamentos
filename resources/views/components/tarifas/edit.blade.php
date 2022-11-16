@@ -9,6 +9,7 @@
                     <form id="tarifasForm" class="card-form" action="{{url('tarifas/'.$tarifa->id)}}" method="POST">
                         @csrf
                         @method('PUT')
+                        @isadmin
                         <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Editar Tarifas</p>
                         <div class="form-group mb-2">
                             <label class="fw-semibold mb-1" for="custo_retirada">Custo de retirada</label>
@@ -35,25 +36,26 @@
                                    step="0.01"
                                    required>
                         </div>
-                        <div class="col-12 d-flex justify-content-end">
+                        @endisadmin
+                        <div @isadmin class="col-12 d-flex justify-content-end" @else class="d-none" @endisadmin>
                             <button id="tarifasCancelBtn" type="button" class="mt-3 mx-3 btn btn-sm btn-inverted">Cancelar</button>
                             <button type="submit" class="mt-3 btn btn-sm btn-filled">Gravar</button>
                         </div>
                     </form>
                 </div>
                 <div class="col-12">
-                    <div id="tarifasStatic" class="card-static">
+                    <div id="tarifasStatic" @isadmin class="card-static" @endisadmin >
                         <p class="text-color-secondary-header m-0 fs-4 fw-semibold">Tarifas</p>
                         <div class="d-flex flex-column mb-1">
                             <span class="fw-semibold">Custo de retirada</span>
-                            <span class="fs-3 text-color-light-blue">{{$tarifa->custo_retirada}}€</span>
+                            <span class="fs-3 text-color-light-blue">{{ number_format($tarifa->custo_retirada, 2, ',', ' ') }}€</span>
                         </div>
                         <div class="d-flex flex-column">
                             <span class="fw-semibold">Custo de operação</span>
-                            <span class="fs-3 text-color-light-blue">{{$tarifa->custo_operacao}}€</span>
+                            <span class="fs-3 text-color-light-blue">{{number_format($tarifa->custo_operacao, 2, ',', ' ')}}€</span>
                         </div>
-                        <div class="col-12 d-flex justify-content-end">
-                            <button type="button" id="tarifasBtn" class="btn btn-sm btn-inverted">Editar</button>
+                        <div @isadmin class="col-12 d-flex justify-content-end" @else class="d-none" @endisadmin>
+                            <button type="button" id="tarifasBtn" class="btn btn-sm btn-inverted" @isadmin @else disabled @endisadmin>Editar</button>
                         </div>
                     </div>
                 </div>
