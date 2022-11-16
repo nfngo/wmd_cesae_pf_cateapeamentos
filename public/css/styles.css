@@ -74,6 +74,10 @@ a:hover {
     border: 1px solid var(--light-blue);
 }
 
+.border-bg-blue {
+    border: 1px solid var(--bg-blue);
+}
+
 .btn {
     width: fit-content;
     padding: 0.375rem 0.75rem;
@@ -242,6 +246,10 @@ nav ul li a {
 }
 
 .navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
     color: white;
 }
 
@@ -475,4 +483,67 @@ th a:hover {
     z-index: -1;
     transform: translateX(100%);
     transition: all 0.5s ease-in-out;
+}
+
+/* ---------------------------------- CUSTOS-APEADOS-LIST VIEW ---------------------------------- */
+
+#custosApeados tr:first-child th:not(:first-child):not(:last-child) {
+    border-right: 1px solid lightsteelblue;
+    border-left: 1px solid lightsteelblue;
+}
+
+/* ---------------------------------- USERS-LIST AND USER-EDIT VIEWS ---------------------------------- */
+
+.user-list-img {
+    width: 40px;
+    height: 40px;
+    font-size: 3.5rem;
+    color: var(--bg-blue);
+}
+
+.user-name-wrapper {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.user-profile-img {
+    max-height: 350px;
+    height: 100%;
+    width: 350px;
+}
+
+.user-profile-img i {
+    font-size: 15rem;
+    color: var(--bg-blue);
+}
+
+@media screen and (max-width: 1000px) {
+    .user-profile-img {
+        height: 250px;
+        width: 250px;
+    }
+
+    .user-profile-img i {
+        font-size: 9rem;
+        color: var(--bg-blue);
+    }
+}
+
+#show-password {
+    position: absolute;
+    top: 65%;
+    right: 1.5rem;
+    cursor: pointer;
+}
+
+.user-delete-btn {
+    padding: 0.375rem 0.5rem;
+    background-color: rgb(211 79 79);
+    border: 2px solid rgb(211 79 79);
+}
+
+.user-delete-btn:hover,
+.user-delete-btn:active {
+    color: rgb(211 79 79);
+    border: 2px solid rgb(211 79 79);
 }

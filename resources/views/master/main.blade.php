@@ -14,6 +14,9 @@
     @if(Request::is('lme-board'))
         <script src="{{ asset('js/lme-board.js') }}" defer></script>
     @endif
+    @if(Request::is('users/*/edit'))
+        <script src="{{ asset('js/user-profile.js') }}" defer></script>
+    @endif
     @yield('scripts')
 
     <!-- Fonts -->

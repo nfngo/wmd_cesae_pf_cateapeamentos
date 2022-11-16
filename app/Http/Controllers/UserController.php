@@ -36,9 +36,7 @@ class UserController extends Controller
             'password'  => Hash::make($request->get('password'))
         ]);
 
-        return redirect('users')
-            ->with('flash_notification.message', 'User registered successfully')
-            ->with('flash_notification.level', 'success');
+        return redirect('users')->with('status', 'Utilizador criado com sucesso.');
     }
 
      /**
@@ -78,6 +76,7 @@ class UserController extends Controller
             $user->password = bcrypt($request->get('password'));
         }
 
+        $file_old = "";
         if($request->image != ''){
 
             //code for remove old file
@@ -103,7 +102,7 @@ class UserController extends Controller
             Storage::disk('public')->delete($file_old);
         }
 
-        return redirect('users');
+        return redirect('users/' . $user->id . '/edit')->with('status', 'Conta alterada com sucesso.');
     }
 
     public function updateRole(Request $request, $id)
@@ -118,7 +117,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('users')->with('status', 'Permissões alteradas com sucesso.');
+        return redirect('users/')->with('status', 'Permissões alteradas com sucesso.');
     }
 
     public function destroy(User $user)

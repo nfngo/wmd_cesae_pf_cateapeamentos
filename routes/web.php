@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', function () {
@@ -41,25 +41,25 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'isAdmin'], function () {
     //Lme
     Route::prefix('lme')->group(function(){
-//        Route::get('', 'LmeController@index');
-//        Route::get('{lme}/edit', 'LmeController@edit');
-//        Route::get('create', 'LmeController@create');
-//
             Route::put('{lme}', 'LmeController@update');
             Route::post('', 'LmeController@store');
             Route::delete('{lme}', 'LmeController@destroy');
         });
         // Cabos
         Route::prefix('cabos')->group(function (){
-//            Route::get('','CaboController@index');
-//            Route::get('{cabo}/edit', 'CaboController@edit');
             Route::put('{cabo}', 'CaboController@update');
         });
         // Tarifas
         Route::prefix('tarifas')->group(function (){
-//            Route::get('','TarifaController@index');
-//            Route::get('{tarifa}/edit', 'TarifaController@edit');
             Route::put('{tarifa}', 'TarifaController@update');
+        });
+
+        //Users
+        Route::prefix('users')->group(function(){
+            Route::get('', 'UserController@index');
+            Route::post('', 'UserController@store');
+            Route::delete('{user}', 'UserController@destroy');
+            Route::post('{id}', 'UserController@updateRole')->name('updateRole');
         });
     });
 
@@ -74,15 +74,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('relatorio', 'RelatorioController@index');
     Route::get('relatorio/export', [RelatorioController::class, 'export']);
 
-    //Users
-    Route::prefix('users')->group(function(){
-        Route::get('', 'UserController@index');
+    //User
+    Route::prefix('users')->group(function() {
         Route::get('{user}/edit', 'UserController@edit');
         Route::put('{user}', 'UserController@update');
-//        Route::get('/create', 'UserController@create');
-        Route::post('', 'UserController@store');
-        Route::delete('{user}', 'UserController@destroy');
-        Route::post('{id}', 'UserController@updateRole')->name('updateRole');
     });
 
     Route::get('custos-apeados', 'CustosApeadosController@index');

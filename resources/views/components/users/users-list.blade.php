@@ -5,12 +5,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-        @if (session('status'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('status') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+    @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="row">
         <div class="col-12">
             <div class="card border-0">
@@ -48,7 +48,10 @@
                                 <td>{{$user->email}}</td>
                                 <td>
                                     @if($user->image != "")
-                                        <img src="" alt="">
+                                        <div
+                                            class="user-list-img d-flex justify-content-center align-items-center rounded-circle bg-light-blue"
+                                            style="background: url('{{asset('storage/' . Auth::user()->image) }}'); background-size: cover; background-position: center;">
+                                        </div>
                                     @else
                                         -
                                     @endif
@@ -57,8 +60,9 @@
                                     <form method="POST"
                                           action="{{ route('updateRole', $user->id) }}">
                                         @csrf
-                                        <input hidden name="id" value="{{$user->id}}" />
-                                        <button type="submit" id="updateUserRole_{{$user->id}}" class="border-0 bg-transparent" @isadmin @else disabled @endisadmin>
+                                        <input hidden name="id" value="{{$user->id}}"/>
+                                        <button type="submit" id="updateUserRole_{{$user->id}}"
+                                                class="border-0 bg-transparent" @isadmin @else disabled @endisadmin>
                                             @if($user->is_admin == 1)
                                                 <i class="fa-solid fa-user-secret"></i>
                                             @else
@@ -67,16 +71,11 @@
                                         </button>
                                     </form>
                                 </td>
-                                <td class="d-flex">
-                                    <form action="{{ url('users/' . $user->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="btn btn-filled">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    </form>
-                                    <button class="btn btn-inverted">Enviar password</button>
+                                <td>
+                                    <button form="userDelete" type="submit"
+                                            class="btn btn-filled user-delete-btn">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -85,6 +84,10 @@
                 @endif
             </div>
         </div>
+        <form id="userDelete" action="{{ url('users/' . $user->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
     </div>
     @isadmin
     <div class="modal fade" id="userCreateModal" tabindex="-1" aria-labelledby="userCreateModalLabel"
@@ -117,25 +120,27 @@
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label class="fw-semibold mb-1" for="new_usd_ton_cobre">Email</label>
+                            <label class="fw-semibold mb-1" for="email">Email</label>
                             <input type="email"
                                    id="email"
                                    name="email"
                                    value="{{ old('email') }}"
-                                   placeholder="exemplo@example.net"
+                                   placeholder="exemplo@exemplo.net"
                                    class="form-control input-custom @error('email') is-invalid @enderror"
                                    autocomplete="email"
                                    required>
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label class="fw-semibold mb-1" for="new_usd_ton_chumbo">Password</label>
+                            <label class="fw-semibold mb-1 w-100" for="password">Password</label>
+                            <small class="form-text text-muted">Deve ter, pelo menos, 8 caracteres.</small>
                             <input id="password" type="password"
                                    class="form-control input-custom @error('password') is-invalid @enderror"
+                                   placeholder="Introduza uma password"
                                    name="password" required autocomplete="new-password">
 
                             @error('password')
@@ -145,8 +150,9 @@
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label class="fw-semibold mb-1" for="new_rate_usd_euro">Confirmar password</label>
+                            <label class="fw-semibold mb-1" for="password-confirm">Confirmar password</label>
                             <input id="password-confirm" type="password" class="form-control input-custom"
+                                   placeholder="Confirme a password"
                                    name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </form>
