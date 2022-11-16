@@ -4,7 +4,7 @@
              aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-bars"></i>
         </div>
-        <a class="fw-bold mx-5" href="{{url('/')}}">CatApeamentos</a>
+        <a class="fw-bold mx-5" href="{{url('/estados')}}">CatApeamentos</a>
     </div>
     <ul class="list-group list-group-horizontal">
         <li class="">
@@ -32,24 +32,34 @@
             <div class="user-info-container mb-3">
                 <div class="d-flex justify-content-center flex-column align-items-center text-white">
                     <div class="user-img d-flex justify-content-center align-items-center rounded-circle bg-light-blue">
-                        <i class="fa-solid fa-user"></i>
+                        @if(Auth::user()->image)
+                            <img src="" alt="">
+                        @else
+                            <i class="fa-solid fa-user"></i>
+                        @endif
                     </div>
-                    <p class="user-name text-uppercase mt-3 mb-0">João Silva</p>
-                    <p class="user-role text-secondary mt-1">Administrador</p>
+                    <p class="user-name text-uppercase mt-3 mb-0">{{Auth::user()->name}}</p>
+                    <p class="user-role text-secondary mt-1">
+                        @isadmin
+                            Administrador
+                        @else
+                            Consultor
+                        @endisadmin
+                    </p>
 
                 </div>
             </div>
             <ul id="offcanvas-menu" class="list-group">
-                <li @if(Request::is('estados')) class="active" @endif>
+                <li @if(Request::is('estados*')) class="active" @endif>
                     <a href="{{url('estados')}}">Controlo de Estados</a>
                 </li>
-                <li @if(Request::is('control-apea')) class="active" @endif>
+                <li @if(Request::is('control-apea*')) class="active" @endif>
                     <a href="{{url('control-apea')}}">Controlo de Apeamentos</a>
                 </li>
-                <li @if(Request::is('lme-board')) class="active" @endif>
+                <li @if(Request::is('lme-board*')) class="active" @endif>
                     <a href="{{url('lme-board')}}">LME</a>
                 </li>
-                <li @if(Request::is('relatorio')) class="active" @endif>
+                <li @if(Request::is('relatorio*')) class="active" @endif>
                     <a href="{{url('relatorio')}}">Relatório Financeiro</a>
                 </li>
                 <li @if(Request::is('custos-apeados')) class="active" @endif>

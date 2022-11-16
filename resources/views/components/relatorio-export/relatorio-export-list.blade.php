@@ -39,11 +39,11 @@
                                 <td>{{ $dado->descricao}} </td>
                                 <td>{{ $dado->cabo}}</td>
                                 <td>{{ $dado->calibre}}</td>
-                                <td>{{ $dado->pares}}</td>
-                                <td>{{ $dado->comp}}</td>
-                                <td>{{ $dado->kg}}</td>
-                                <td>{{$dado->valor_unit_venda}}€</td>
-                                <td>{{number_format($dado->valor_total_venda, 2, ',', ' ')}}€</td>
+                                <td>{{ number_format($dado->pares, 0, ',', ' ') }}</td>
+                                <td>{{ number_format($dado->comp, 2, ',', ' ')}}</td>
+                                <td>{{ number_format($dado->kg, 2, ',', ' ')}}</td>
+                                <td>{{ number_format($dado->valor_unit_venda, 2, ',', ' ') }}€</td>
+                                <td>{{ number_format($dado->valor_total_venda, 2, ',', ' ') }}€</td>
                             </tr>
                         @endforeach
                         </tbody>

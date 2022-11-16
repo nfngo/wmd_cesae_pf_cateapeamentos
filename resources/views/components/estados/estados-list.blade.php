@@ -152,7 +152,7 @@
                                 <th scope="col">PdS Cadastro</th>
 
                                 <th scope="col">Código Nemesis</th>
-                                <th scoppe="col"></th>
+                                <th scope="col"></th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Data Estado</th>
                                 <th scope="col">Estado Resumo</th>
@@ -187,13 +187,17 @@
                                     <td>
                                         {{ $project->bald_id }}
                                     </td>
+
                                     <td class="text-center">
+                                        @isadmin
                                         @if($project->bald_id)
                                             <a href={{url('bald/' . $project->bald_id . '/edit')}}>
                                                 <i class="fa-solid fa-eye fs-5"></i>
                                             </a>
                                         @endif
+                                        @endisadmin
                                     </td>
+
                                     <td>{{ $project->estado_nemesis_bald_id }}</td>
                                     <td>{{ $project->data_estado_global_bald}}</td>
                                     <td>
@@ -277,11 +281,13 @@
 
                                     <td>{{ $project->apea_id }}</td>
                                     <td class="text-center">
+                                        @isadmin
                                         @if($project->apea_id)
                                             <a href={{url('apea/' . $project->apea_id . '/edit')}}>
                                                 <i class="fa-solid fa-eye fs-5"></i>
                                             </a>
                                         @endif
+                                        @endisadmin
                                     </td>
                                     <td>{{ $project->estado_nemesis_apea_id }}</td>
                                     <td>{{ $project->data_estado_global_apea}}</td>
@@ -380,8 +386,8 @@
                                             <form method="POST"
                                                   action="{{ route('updateFaturado', $project->apea_id) }}">
                                                 @csrf
-                                                <input hidden name="id" value="$project->apea_id"></input>
-                                                <button type="submit" id="updateFaturado_{{$project->apea_id}}" class="border-0 bg-transparent">
+                                                <input hidden name="id" value="$project->apea_id" />
+                                                <button type="submit" id="updateFaturado_{{$project->apea_id}}" class="border-0 bg-transparent" @isadmin @else disabled @endisadmin>
                                                     @if($project->faturado == 1)
                                                         <i class="fs-4 fa-solid fa-circle-check text-success"></i>
                                                     @elseif($project->faturado == 0)

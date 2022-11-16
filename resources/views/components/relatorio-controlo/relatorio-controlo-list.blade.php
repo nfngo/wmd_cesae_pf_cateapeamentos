@@ -93,9 +93,9 @@
                                     <td>{{ $item->cco}}</td>
                                     <td>{{ $item->data}}</td>
                                     <td>{{ $item->material_descricao }}</td>
-                                    <td>{{ $item->comprimento_proj}}</td>
+                                    <td>{{ number_format($item->comprimento_proj, 2, ',', ' ') }}</td>
                                     <td>{{ $item->tipo_consumo_proj}}</td>
-                                    <td>{{ $item->comprimento_real}}</td>
+                                    <td>{{ number_format($item->comprimento_real, 2, ',', ' ') }}</td>
                                     <td>{{ $item->tipo_consumo_real}}</td>
                                 </tr>
                             @endforeach
