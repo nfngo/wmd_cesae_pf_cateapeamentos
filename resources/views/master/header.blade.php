@@ -4,7 +4,7 @@
              aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-bars"></i>
         </div>
-        <a class="fw-bold mx-5" href="{{url('/')}}">CatApeamentos</a>
+        <a class="fw-bold mx-5" href="{{url('/estados')}}">CatApeamentos</a>
     </div>
     <ul class="list-group list-group-horizontal">
         <li class="">
@@ -40,16 +40,16 @@
                 </div>
             </div>
             <ul id="offcanvas-menu" class="list-group">
-                <li @if(Request::is('estados')) class="active" @endif>
+                <li @if(Request::is('estados*')) class="active" @endif>
                     <a href="{{url('estados')}}">Controlo de Estados</a>
                 </li>
-                <li @if(Request::is('control-apea')) class="active" @endif>
+                <li @if(Request::is('control-apea*')) class="active" @endif>
                     <a href="{{url('control-apea')}}">Controlo de Apeamentos</a>
                 </li>
-                <li @if(Request::is('lme-board')) class="active" @endif>
+                <li @if(Request::is('lme-board*')) class="active" @endif>
                     <a href="{{url('lme-board')}}">LME</a>
                 </li>
-                <li @if(Request::is('relatorio')) class="active" @endif>
+                <li @if(Request::is('relatorio*')) class="active" @endif>
                     <a href="{{url('relatorio')}}">Relatório Financeiro</a>
                 </li>
             </ul>

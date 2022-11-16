@@ -8,12 +8,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-            @if (session('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="row lme-cards-container">
             <div class="col-12 col-md-4">
                 @component('components.tarifas.edit', ['tarifa' => $tarifa])
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+            @isadmin
         <!-- Modal -->
         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -188,5 +189,6 @@
                 </div>
             </div>
         </div>
+        @endisadmin
     </div>
 @endsection

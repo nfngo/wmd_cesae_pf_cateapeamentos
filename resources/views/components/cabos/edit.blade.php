@@ -22,10 +22,15 @@
                 <span class="fw-semibold">% Peso Cabo em chumbo</span>
                 <span class="fs-3 text-color-light-blue">{{$cabo->perc_peso_chumbo}}%</span>
             </div>
-            <div class="col-12 d-flex justify-content-end">
-                <button id="caboEditBtn_{{$cabo->id}}" class="btn btn-sm btn-inverted">Editar</button>
+
+            <div @isadmin class="col-12 d-flex justify-content-end" @else class="d-none" @endisadmin>
+                <button id="caboEditBtn_{{$cabo->id}}" class="btn btn-sm btn-inverted" @isadmin @else disabled
+                        @endisadmin>Editar
+                </button>
             </div>
+
         </div>
+        @isadmin
         <form id="caboForm_{{$cabo->id}}" class="card-form" action="{{url('cabos/'.$cabo->id)}}" method="POST">
             @csrf
             @method('PUT')
@@ -111,6 +116,7 @@
                 <button type="submit" class="mt-3 btn btn-sm btn-filled">Gravar</button>
             </div>
         </form>
+        @endisadmin
     </div>
 
 </div>
