@@ -75,7 +75,7 @@ class LmeController extends Controller
         $tempLme = Lme::find((int)($month . $year));
 
         if($tempLme) {
-            return redirect('lme-board')->with('error', 'Data já existente.');
+            return redirect('lme-board')->with('error', 'Data já existente. Por favor, introduza uma nova data.');
         }
 
         $lme->usd_ton_cobre = $request->usd_ton_cobre;
@@ -108,7 +108,7 @@ class LmeController extends Controller
 
             $lme->save();
 
-            return redirect('lme-board')->with('status', 'Item criado');
+            return redirect('lme-board')->with('status', 'Registo criado com sucesso.');
 
         }
 
@@ -126,7 +126,7 @@ class LmeController extends Controller
 
         //Lme::create($request->all());
         $lme->save();
-        return redirect('lme-board')->with('status', 'Item created successfully!');
+        return redirect('lme-board')->with('status', 'Registo criado com sucesso.');
     }
 
     /**
@@ -179,7 +179,7 @@ class LmeController extends Controller
         $tempLme = Lme::find((int)($month . $year));
 
         if($tempLme) {
-            return redirect('lme-board')->with('error', 'Data já existente.');
+            return redirect('lme-board')->with('error', 'Data já existente. Por favor, introduza uma nova data.');
         }
 
         //$lme->id = DB::raw("SELECT MONTH(data) from lmes").DB::raw("SELECT YEAR(data) from lmes");
@@ -238,6 +238,6 @@ class LmeController extends Controller
     {
         $lme->delete();
 
-        return redirect('lme-board')->with('status', 'Eliminado com sucesso');
+        return redirect('lme-board')->with('status', 'Registo eliminado com sucesso');
     }
 }

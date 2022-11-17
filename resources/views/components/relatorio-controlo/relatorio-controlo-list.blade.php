@@ -67,7 +67,7 @@
                             <tr class="bg-light-blue text-white bt-0">
 
                                 <th scope="col">@sortablelink('apea_id', 'Codigo Nemesis Apeamento')</th>
-                                <th scope="col">@sortablelink('material_id', 'Material ID')</th>
+                                <th scope="col">@sortablelink('material_id', 'ID Material')</th>
                                 <th scope="col">Codigo Centro Lucro</th>
                                 <th scope="col">Descrição Centro Lucro</th>
                                 <th scope="col">GECA Serviço</th>
@@ -75,9 +75,9 @@
                                 <th scope="col">CCO</th>
                                 <th scope="col">@sortablelink('data', 'Data')</th>
                                 <th scope="col">Material Descrição</th>
-                                <th scope="col">Comprimento Projecto</th>
+                                <th scope="col">Comprimento Projecto (m)</th>
                                 <th scope="col">Tipo Consumo Projecto</th>
-                                <th scope="col">Comprimento Real</th>
+                                <th scope="col">Comprimento Real (m)</th>
                                 <th scope="col">Tipo Consumo Real</th>
                             </tr>
                             </thead>

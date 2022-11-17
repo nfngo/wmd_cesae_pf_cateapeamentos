@@ -18,12 +18,12 @@
                     <div class="col-12">
                         <p class="text-color-secondary-header m-3 fs-4 fw-semibold">Utilizadores</p>
                     </div>
-                    {{--                @isadmin--}}
+
                     <button type="button" class="position-absolute btn btn-filled lme-add-btn" data-bs-toggle="modal"
                             data-bs-target="#userCreateModal">
                         <i class="fa-solid fa-plus"></i>
                     </button>
-                    {{--                @endisadmin--}}
+
                 </div>
 
                 @if($users->count() == 0)
@@ -50,7 +50,7 @@
                                     @if($user->image != "")
                                         <div
                                             class="user-list-img d-flex justify-content-center align-items-center rounded-circle bg-light-blue"
-                                            style="background: url('{{asset('storage/' . Auth::user()->image) }}'); background-size: cover; background-position: center;">
+                                            style="background: url('{{asset('storage/' . $user->image) }}'); background-size: cover; background-position: center;">
                                         </div>
                                     @else
                                         -

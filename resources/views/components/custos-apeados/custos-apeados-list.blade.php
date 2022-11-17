@@ -15,16 +15,16 @@
                         </tr>
                         <tr class="bg-secondary-header text-white">
                             <th scope="col">Designação</th>
-                            <th scope="col">Pla(m)</th>
-                            <th scope="col">Pla(Kg)</th>
-                            <th scope="col">Pla Venda</th>
-                            <th scope="col">Cobre(Kg)</th>
-                            <th scope="col">Chumbo(Kg)</th>
-                            <th scope="col">Real(m)</th>
-                            <th scope="col">Real(Kg)</th>
-                            <th scope="col">Real Venda</th>
-                            <th scope="col">Cobre(Kg)</th>
-                            <th scope="col">Chumbo(Kg)</th>
+                            <th scope="col">Comprimento Pla. (m)</th>
+                            <th scope="col">Peso Pla. (Kg)</th>
+                            <th scope="col">Lucro Pla.</th>
+                            <th scope="col">Quantidade Cobre (Kg)</th>
+                            <th scope="col">Quantidade Chumbo (Kg)</th>
+                            <th scope="col">Comprimento Real (m)</th>
+                            <th scope="col">Peso Real (Kg)</th>
+                            <th scope="col">Lucro Real</th>
+                            <th scope="col">Quantidade Cobre (Kg)</th>
+                            <th scope="col">Quantidade Chumbo (Kg)</th>
                             <th scope="col">Custos BALDEIA + APEIA</th>
                             <th scope="col">Proveitos Liquidos</th>
                             <th scope="col">Rentabilidade</th>
@@ -57,7 +57,7 @@
                                 <td>{{ number_format((($item-> total_plan_venda - $item->custo_bald_apea) * 100 / $item-> total_plan_venda), 1, ',', ' ' ) }}
                                     %
                                 </td>
-                                <td>{{ $item-> data_apeamento}}</td>
+                                <td>{{ \Carbon\Carbon::parse($item-> data_apeamento)->format('Y-m-d')}}</td>
                                 <td>{{ number_format($item-> custo_venda, 2, ',', ' ') }}€</td>
 
                             </tr>

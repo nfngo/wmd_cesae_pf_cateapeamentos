@@ -19,12 +19,12 @@
 
                             <th scope="col">Numero Externo</th>
                             <th scope="col">Data</th>
-                            <th scope="col">idMaterial</th>
+                            <th scope="col">ID Material</th>
                             <th scope="col">Descrição</th>
                             <th scope="col">Cabo</th>
-                            <th scope="col"> Calibre</th>
+                            <th scope="col">Calibre</th>
                             <th scope="col">Pares</th>
-                            <th scope="col">Comp(m)</th>
+                            <th scope="col">Comp (m)</th>
                             <th scope="col">Kg</th>
                             <th scope="col">Valor Unit Venda</th>
                             <th scope="col">Valor Total Venda</th>
