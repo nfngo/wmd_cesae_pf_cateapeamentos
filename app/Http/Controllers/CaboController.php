@@ -14,8 +14,7 @@ class CaboController extends Controller
      */
     public function index()
     {
-        $cabo = Cabo::all();
-        return view('pages.cabos.index', ['cabo' => $cabo]);
+        //
     }
      /**
      * Show the form for creating a new resource.

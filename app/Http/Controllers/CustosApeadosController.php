@@ -26,9 +26,6 @@ class CustosApeadosController extends Controller
                DB::raw('SUM(controlo_apeas.comprimento_real * materials.cobre) as total_cobre_real_final'),
                DB::raw('SUM(controlo_apeas.comprimento_real * materials.chumbo) as total_chumbo_real_final'),
                DB::raw('custos.custo_total_real_final as custo_bald_apea'),
-              /*
-               DB::raw('((controlo_apeas.comprimento_real * materials.peso_kg_m * lmes.custo_venda) - custos.custo_total_real_final) / (controlo_apeas.comprimento_real * materials.peso_kg_m * lmes.custo_venda) as rentabilidade'),
-               DB::raw('(controlo_apeas.comprimento_proj * materials.peso_kg_m * lmes.custo_venda - custos.custo_total_real_final) / (controlo_apeas.comprimento_proj * materials.peso_kg_m * lmes.custo_venda) as rentabilidade_planeada'),*/
                DB::raw('controlo_apeas.data as data_apeamento'),
                DB::raw('lmes.custo_venda as custo_venda'),
                DB::raw('custos.id as custo_id')

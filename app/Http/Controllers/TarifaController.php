@@ -14,8 +14,8 @@ class TarifaController extends Controller
      */
     public function index()
     {
-        $tarifa = Tarifa::find(1);
-        return view('pages.tarifas.index', ['tarifa' => $tarifa]);
+//        $tarifa = Tarifa::find(1);
+//        return view('pages.tarifas.index', ['tarifa' => $tarifa]);
     }
     /**
      * Show the form for creating a new resource.
@@ -57,7 +57,7 @@ class TarifaController extends Controller
      */
     public function edit(Tarifa $tarifa)
     {
-        return view('pages.tarifas.edit', ['tarifa' => $tarifa]);
+        //return view('pages.tarifas.edit', ['tarifa' => $tarifa]);
     }
 
     /**

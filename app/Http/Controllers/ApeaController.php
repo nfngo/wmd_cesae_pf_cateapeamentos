@@ -59,7 +59,6 @@ class ApeaController extends Controller
      */
     public function edit(Apea $apea)
     {
-
         $estados = Estado::all();
 
         return view('pages.apeamentos.edit', ['apea' => $apea, 'estados' => $estados]);
